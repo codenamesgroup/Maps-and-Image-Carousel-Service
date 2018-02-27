@@ -1,11 +1,22 @@
 import express from 'express';
+import bodyParser from 'body-parser';
+import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
+
+import database from './../database';
+
+import { schema } from './routes/graphql';
+
+import { businessRoute } from './routes/businessRoute';
+
 
 let app = express();
 
+app.use(express.static(__dirname + '/../client/dist'));
 
-app.get('/', (req, res) => {
-	res.send('Hello World');
-});
+app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
+app.get('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
+
+app.use('/business', businessRoute);
 
 let port =  process.env.port || 3000;
 app.listen(port, () => {
