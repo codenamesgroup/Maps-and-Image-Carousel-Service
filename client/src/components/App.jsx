@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-import { Map } from './Map.jsx';
+import { BusinessInfo } from './BusinessInfo.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -48,12 +48,13 @@ class App extends React.Component {
         height: '300px',
 
         margin: 'auto',
+        background: 'lightgray',
       }
     }
 
     return (
       <div style={styles.container}>
-        <Map/>
+        <BusinessInfo business={this.state.business}/>
       </div>
     );
   }

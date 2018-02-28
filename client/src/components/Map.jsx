@@ -2,13 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Map = (props) => {
+	let onClick = () => {
+		console.log(props.latitude, props.longitude);
+	};
+
+	let style = {
+		cursor: 'pointer',
+	};
+
 	return (
 		<div>
-			<img src='https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap
-&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318
-&markers=color:red%7Clabel:C%7C40.718217,-73.998284'/>
+			<img style={style}
+				src={`https://maps.googleapis.com/maps/api/staticmap?zoom=13&size=286x135&maptype=roadmap
+				&markers=color:blue%7Clabel:S%7C${props.latitude},${props.longitude}`}
+				onClick={onClick}
+			/>
 		</div>
-	)
+	);
 }
 
 Map.propTypes = {
