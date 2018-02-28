@@ -15,8 +15,6 @@ const BusinessInfo = (props) => {
 		}
 	};
 
-	console.log(props);
-
 	return (
 		<div style={styles.container}>
 			<Map longitude={props.business.longitude || 0.0} latitude={props.business.latitude || 0.0}/>
