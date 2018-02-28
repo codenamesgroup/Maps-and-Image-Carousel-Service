@@ -1,27 +1,41 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
+
+import { Map } from './Map.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      // business: {
-      //   name: 'business name',
-      //   neighborhood: 'neighborhood',
-      //   address: 'address',
-      //   city: 'city',
-      //   state: 'state',
-      //   postal_code: 'postal_code',
-      //   logitude: 0,
-      //   latitude: 0,
-      // },
-      // photos: [
-      //   {
-      //     user_id:
-      //   },
-      // ],
+      business: {},
+      photos: [],
     };
+  }
+
+  componentDidMount() {
+    axios.get('/business/--9e1ONYQuAa-CB_Rrw7Tw')
+      .then((response) => {
+        return response.data;
+      })
+      .then((businessData) => {
+        this.setState({business: businessData});
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+    axios.get('/business/photos/--9e1ONYQuAa-CB_Rrw7Tw')
+      .then((response) => {
+        return response.data;
+      })
+      .then((photosData) => {
+        this.setState({photos: photosData});
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   render() {
@@ -34,13 +48,12 @@ class App extends React.Component {
         height: '300px',
 
         margin: 'auto',
-        background: 'red',
       }
     }
 
     return (
       <div style={styles.container}>
-        <h1>lol</h1>
+        <Map/>
       </div>
     );
   }
