@@ -18,9 +18,8 @@ class App extends React.Component {
   componentDidMount() {
     let urlArray = window.location.href.split('/');
     let url = urlArray[urlArray.length - 2];
-    console.log(url);
 
-    axios.get('/business/--9e1ONYQuAa-CB_Rrw7Tw')
+    axios.get(`/business/${url}`)
       .then((response) => {
         return response.data;
       })
@@ -31,7 +30,7 @@ class App extends React.Component {
         console.error(error);
       });
 
-    axios.get('/business/photos/--9e1ONYQuAa-CB_Rrw7Tw')
+    axios.get(`/business/photos/${url}`)
       .then((response) => {
         return response.data;
       })
