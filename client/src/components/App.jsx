@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import { BusinessInfo } from './BusinessInfo.jsx';
+import { Carousel } from './Carousel.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -44,8 +45,10 @@ class App extends React.Component {
         display: 'flex',
         flexDirection: 'row',
 
+        justifyContent: 'center',
+        alignItems: 'center',
+
         width: '1000px',
-        height: '300px',
 
         margin: 'auto',
         background: 'lightgray',
@@ -55,6 +58,7 @@ class App extends React.Component {
     return (
       <div style={styles.container}>
         <BusinessInfo business={this.state.business}/>
+        <Carousel photos={this.state.photos || []}/>
       </div>
     );
   }

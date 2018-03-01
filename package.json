@@ -32,10 +32,11 @@
     "graphql": "^0.13.1",
     "graphql-tools": "^2.21.0",
     "mongoose": "^4.9.6",
-    "mysql2": "^2.15.0",
+    "mysql2": "^1.5.2",
     "prop-types": "^15.6.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "reactcss": "^1.2.3",
     "request": "^2.81.0",
     "sequelize": "^4.33.4"
   }
