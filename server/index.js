@@ -10,8 +10,7 @@ import { businessRoute } from './routes/businessRoute';
 
 
 let app = express();
-
-app.use(express.static(__dirname + '/../client/dist'));
+app.use('/:id', express.static(__dirname + '/../client/dist'));
 
 app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
 app.get('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));

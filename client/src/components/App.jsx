@@ -16,6 +16,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    let urlArray = window.location.href.split('/');
+    let url = urlArray[urlArray.length - 2];
+    console.log(url);
+
     axios.get('/business/--9e1ONYQuAa-CB_Rrw7Tw')
       .then((response) => {
         return response.data;
