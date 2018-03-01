@@ -10,6 +10,8 @@ class CarouselImage extends React.PureComponent {
 				container: {
 					position: 'relative',
 					textAlign: 'center',
+					width: '220px',
+					height: '220px',
 				},
 				image: {
 					background: 'black',
@@ -20,33 +22,43 @@ class CarouselImage extends React.PureComponent {
 					margin: '0px',
 				},
 				label: {
+					display: 'none',
 					position: 'absolute',
 					color: 'white',
 					background: 'rgba(0,0,0,0.5)',
 					width: '250px',
-					bottom: '0',
 					left: '0',
+					bottom: '0',
 
 					margin: '0px',
-					padding: '8px',
+					padding: '8px 0',
 				}
 			},
 			hover: {
-				image: {
-					background: 'blue',
+				container: {
 					width: '250px',
 					height: '250px',
+				},
+				image: {
+					width: '250px',
+					height: '250px',
+				},
+				label: {
+					display: 'block',
+					width: '250px',
 				},
 			},
 		}, this.props);
 
 		return (
-			<div style={styles.container}>
+			<div style={styles.container}
+				onClick={this.props.onClick}
+			>
 				<img style={styles.image}
-					src={`https://s3-media4.fl.yelpcdn.com/bphoto/${this.props.image.id || 'moosiOXvCF0i_Hm_vIuNwg'}/o.jpg`}
+					src={ this.props.image.id ? `https://s3-media4.fl.yelpcdn.com/bphoto/${this.props.image.id}/o.jpg` : undefined}
 				/>
 
-				{this.props.hover ? <p style={styles.label}>{this.props.image.label}</p> : undefined}
+				<p style={styles.label}>{this.props.image.label || ''}</p>
 			</div>
 		);
 	}
@@ -54,6 +66,7 @@ class CarouselImage extends React.PureComponent {
 
 CarouselImage.propTypes = {
 	image: PropTypes.object,
+	onClick: PropTypes.func,
 };
 
 CarouselImage = hover(CarouselImage);

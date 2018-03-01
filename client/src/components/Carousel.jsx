@@ -17,6 +17,10 @@ let Carousel = (props) => {
 		},
 	});
 
+	let imageOnClick = () => {
+		console.log(i);
+	}
+
 	return (
 		<div style={styles.container}>
 			<CarouselImage image={props.photos && props.photos.length >= 1 ? props.photos[0] : {}}/>
