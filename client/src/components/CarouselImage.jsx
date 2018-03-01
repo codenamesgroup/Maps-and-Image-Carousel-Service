@@ -57,7 +57,6 @@ class CarouselImage extends React.PureComponent {
 				<img style={styles.image}
 					src={ this.props.image.id ? `https://s3-media4.fl.yelpcdn.com/bphoto/${this.props.image.id}/o.jpg` : undefined}
 				/>
-
 				<p style={styles.label}>{this.props.image.label || ''}</p>
 			</div>
 		);

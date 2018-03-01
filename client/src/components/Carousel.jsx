@@ -3,11 +3,23 @@ import PropTypes from 'prop-types';
 import reactCSS, { hover } from 'reactcss';
 
 import { CarouselImage } from './CarouselImage.jsx';
+import { Gallery } from './Gallery.jsx';
 
-class Carousel extends React.PureComponent {
+class Carousel extends React.Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			galleryOpen: false,
+			galleryStartPage: 0,
+		};
+	};
+
 	itemOnClick = (index) => {
-		console.log('hi');
-		console.log(index);
+		this.setState({
+			galleryOpen: true,
+			galleryStartPage: index
+		});
 	}
 
 	render() {
@@ -34,13 +46,19 @@ class Carousel extends React.PureComponent {
 				<CarouselImage image={this.props.photos && this.props.photos.length >= 3 ? this.props.photos[2] : {}}
 					onClick={this.itemOnClick.bind(null, 2)}
 				/>
+
+				{
+					this.state.galleryOpen
+					? <Gallery/>
+					: undefined
+				}
 			</div>
 		)
 	}
 };
 
 Carousel.propTypes = {
-	photos: PropTypes.array
+	photos: PropTypes.array,
 };
 
 export { Carousel };
