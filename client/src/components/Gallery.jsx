@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class Gallery extends React.Component {
+class Gallery extends React.PureComponent {
 	render() {
 		let styles = {
 			background: {
 				position: 'fixed',
 				display: 'flex',
-				justifyContent: 'center',
+				flexDirection: 'column',
 				alignItems: 'center',
 				zIndex: '1',
 				width: '100%',
@@ -18,12 +18,20 @@ class Gallery extends React.Component {
 				background: 'rgba(0, 0, 0, 0.4)',
 			},
 			container: {
-				display: 'flex'
+				display: 'flex',
+				width: '1000px',
+				height: '100%',
+				marginBottom: '10%',
+				background: 'white',
 			}
 		};
 
 		return (
 			<div style={styles.background}>
+				<div onClick={this.props.onClose}>
+					exit X
+				</div>
+
 				<div style={styles.container}>
 					<p>hello lul</p>
 				</div>
@@ -34,6 +42,7 @@ class Gallery extends React.Component {
 
 Gallery.propTypes = {
 	photos: PropTypes.array,
+	onClose: PropTypes.func,
 };
 
 export { Gallery };

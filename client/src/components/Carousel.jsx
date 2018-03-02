@@ -22,6 +22,10 @@ class Carousel extends React.Component {
 		});
 	}
 
+	galleryClose = () => {
+		this.setState({galleryOpen: false});
+	}
+
 	render() {
 		let styles = reactCSS({
 			'default': {
@@ -49,7 +53,7 @@ class Carousel extends React.Component {
 
 				{
 					this.state.galleryOpen
-					? <Gallery photos={this.props.photos}/>
+					? <Gallery photos={this.props.photos} onClose={this.galleryClose}/>
 					: undefined
 				}
 			</div>
