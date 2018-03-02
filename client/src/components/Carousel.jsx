@@ -49,7 +49,7 @@ class Carousel extends React.Component {
 
 				{
 					this.state.galleryOpen
-					? <Gallery/>
+					? <Gallery photos={this.props.photos}/>
 					: undefined
 				}
 			</div>
