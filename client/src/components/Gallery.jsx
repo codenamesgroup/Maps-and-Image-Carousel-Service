@@ -42,26 +42,30 @@ class Gallery extends React.Component {
 				flexDirection: 'column',
 				width: '1000px',
 				height: '100%',
-				marginBottom: '5%',
+				paddingBottom: '32px',
 			},
 			content: {
 				display: 'flex',
 				flexDirection: 'column',
+				borderRadius: '4px',
 				background: 'white',
 				width: '100%',
 				height: '100%',
 			},
 			closeButton: {
 				marginLeft: 'auto',
+				padding: '4px 8px',
 				color: 'white',
 				cursor: 'pointer',
 				fontSize: '16pt',
-				padding: '4px 8px',
+				userSelect: 'none',
 			},
 
 			imageContainer: {
-				display: 'flex',
-				justifyContent: 'space-between',
+				position: 'relative',
+				alignItems: 'center',
+				height: '100%',
+				width: '100%',
 			},
 			image: {
 				width: '100%',
@@ -70,12 +74,16 @@ class Gallery extends React.Component {
 			},
 			leftButton: {
 				position: 'absolute',
-				alignSelf: 'start',
+				cursor: 'pointer',
+				userSelect: 'none',
+				left: '0',
 				bottom: '50%',
 			},
 			rightButton: {
 				position: 'absolute',
-				alignSelf: 'end',
+				cursor: 'pointer',
+				userSelect: 'none',
+				right: '0',
 				bottom: '50%',
 			}
 		};
@@ -94,11 +102,11 @@ class Gallery extends React.Component {
 
 					<div style={styles.content}>
 						<div style={styles.imageContainer}>
-							<img style={styles.image}
-								src={`https://s3-media4.fl.yelpcdn.com/bphoto/${photos[currentIndex].id}/o.jpg`}/>
 
 							<div style={styles.leftButton} onClick={this.clickLeft}> left </div>
 							<div style={styles.rightButton} onClick={this.clickRight}> right </div>
+							<img style={styles.image}
+								src={`https://s3-media4.fl.yelpcdn.com/bphoto/${photos[currentIndex].id}/o.jpg`}/>
 						</div>
 					</div>
 
