@@ -1,4 +1,5 @@
 import React from 'react';
+import reactCSS from 'reactcss';
 import PropTypes from 'prop-types';
 
 class Gallery extends React.PureComponent {
@@ -23,17 +24,33 @@ class Gallery extends React.PureComponent {
 				height: '100%',
 				marginBottom: '10%',
 				background: 'white',
+			},
+			content: {
+				display: 'flex',
+				flexDirection: 'column',
+				backgorund: 'red',
+				width: '1000px',
+				marginBottom: '10%',
+			},
+			closeButton: {
+				right: '0',
 			}
 		};
 
 		return (
 			<div style={styles.background}>
-				<div onClick={this.props.onClose}>
-					exit X
-				</div>
+				<div style={styles.content}>
 
-				<div style={styles.container}>
-					<p>hello lul</p>
+					<div onClick={this.props.onClose}>
+						exit X
+					</div>
+
+
+					<div style={styles.content}>
+						<img src={`https://s3-media4.fl.yelpcdn.com/bphoto/${this.props.photos[initialIndex].id}/o.jpg`}/>
+					</div>
+
+
 				</div>
 			</div>
 		)
@@ -42,6 +59,7 @@ class Gallery extends React.PureComponent {
 
 Gallery.propTypes = {
 	photos: PropTypes.array,
+	initialIndex: PropTypes.number,
 	onClose: PropTypes.func,
 };
 
