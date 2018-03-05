@@ -17,7 +17,7 @@ app.get('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
 app.use('/business', businessRoute);
 
-let port =  process.env.port || 3000;
+let port =  process.env.port || 3001;
 app.listen(port, () => {
 	console.log(`listening at port ${port}`);
 });
