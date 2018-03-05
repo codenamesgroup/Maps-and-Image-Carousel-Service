@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import { BusinessInfo } from './BusinessInfo.jsx';
+import { Carousel } from './Carousel.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -15,7 +16,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/business/--9e1ONYQuAa-CB_Rrw7Tw')
+    let urlArray = window.location.href.split('/');
+    let url = urlArray[urlArray.length - 2];
+
+    axios.get(`/business/${url}`)
       .then((response) => {
         return response.data;
       })
@@ -26,7 +30,7 @@ class App extends React.Component {
         console.error(error);
       });
 
-    axios.get('/business/photos/--9e1ONYQuAa-CB_Rrw7Tw')
+    axios.get(`/business/photos/${url}`)
       .then((response) => {
         return response.data;
       })
@@ -44,8 +48,10 @@ class App extends React.Component {
         display: 'flex',
         flexDirection: 'row',
 
+        justifyContent: 'center',
+        alignItems: 'center',
+
         width: '1000px',
-        height: '300px',
 
         margin: 'auto',
         background: 'lightgray',
@@ -55,6 +61,7 @@ class App extends React.Component {
     return (
       <div style={styles.container}>
         <BusinessInfo business={this.state.business}/>
+        <Carousel photos={this.state.photos || []}/>
       </div>
     );
   }

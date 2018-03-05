@@ -9,6 +9,9 @@ const BusinessInfo = (props) => {
 			padding: '4px',
 			background: 'white',
 			fontSize: '10px',
+
+			width: '300px',
+			heigth: '300px',
 		},
 		address: {
 			fontWeight: 'bold',
