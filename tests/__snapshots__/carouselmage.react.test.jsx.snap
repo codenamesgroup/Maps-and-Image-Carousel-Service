@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CarouselImage/> should render 1`] = `
+<span
+  onMouseOut={[Function]}
+  onMouseOver={[Function]}
+>
+  <CarouselImage
+    hover={false}
+  />
+</span>
+`;

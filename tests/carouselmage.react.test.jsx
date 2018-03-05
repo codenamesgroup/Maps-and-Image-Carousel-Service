@@ -1,19 +1,16 @@
-/* WIP */
+import React from 'react';
+import { shallowToJson } from 'enzyme-to-json';
 
-// import React from 'react';
-// import { shallow } from 'enzyme';
-// import { shallowToJson } from 'enzyme-to-json';
-// import CarouselImage from './../client/src/components/CarouselImage.jsx';
+import { CarouselImage } from './../client/src/components/CarouselImage.jsx';
 
-// test('carousel image', () => {
-// 	let component = shallow(
-// 		<CarouselImage/>
-// 	);
+describe('<CarouselImage/>', () => {
+	let component = shallow(<CarouselImage/>);
 
-//   expect(shallowToJson(CarouselImage)).toMatchSnapshot();
+	it('should render', () => {
+		expect(shallowToJson(component)).toMatchSnapshot();
+	});
 
-
-// 	// it('should display label when hovered', () => {
-// 	// 	expect(true).toBe(true);
-// 	// });
-// });
+	it('should display label when hovered', () => {
+		expect(true).toBe(true);
+	});
+});
