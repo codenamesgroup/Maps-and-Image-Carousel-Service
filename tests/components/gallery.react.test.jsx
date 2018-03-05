@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallowToJson } from 'enzyme-to-json';
 
-import { Gallery } from './../client/src/components/Gallery.jsx';
+import { Gallery } from './../../client/src/components/Gallery.jsx';
 
 describe('<Gallery/>', () => {
 	let component = shallow(

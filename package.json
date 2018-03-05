@@ -10,8 +10,8 @@
   "scripts": {
     "start": "nodemon bin/init",
     "webpack": "webpack -d --watch",
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "test": "jest --watch",
+    "test:quick": "jest",
     "test:coverage": "jest --coverage"
   },
   "jest": {

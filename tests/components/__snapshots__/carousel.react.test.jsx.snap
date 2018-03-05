@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Carousel/> should render without props 1`] = `
+<div
+  style={
+    Object {
+      "WebkitJustifyContent": "center",
+      "alignItems": "center",
+      "display": "flex",
+      "flexDirection": "row",
+      "justifyContent": "center",
+      "width": "100%",
+    }
+  }
+>
+  <Hover
+    image={Object {}}
+    onClick={[Function]}
+  />
+  <Hover
+    image={Object {}}
+    onClick={[Function]}
+  />
+  <Hover
+    image={Object {}}
+    onClick={[Function]}
+  />
+</div>
+`;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallowToJson } from 'enzyme-to-json';
 
-import { Map } from './../client/src/components/Map.jsx';
+import { Map } from './../../client/src/components/Map.jsx';
 
 describe('<Map/>', () => {
 

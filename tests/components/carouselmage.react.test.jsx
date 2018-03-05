@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallowToJson } from 'enzyme-to-json';
 
-import { CarouselImage } from './../client/src/components/CarouselImage.jsx';
+import { CarouselImage } from './../../client/src/components/CarouselImage.jsx';
 
 describe('<CarouselImage/>', () => {
 	let component = shallow(<CarouselImage/>);
