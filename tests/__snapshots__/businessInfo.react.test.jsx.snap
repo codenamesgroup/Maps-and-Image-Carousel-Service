@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<BusinessInfo/> should render with empty business object 1`] = `
+<div
+  style={
+    Object {
+      "background": "white",
+      "fontSize": "10px",
+      "heigth": "300px",
+      "padding": "4px",
+      "width": "300px",
+    }
+  }
+>
+  <Map
+    latitude={0}
+    longitude={0}
+  />
+  <p
+    style={
+      Object {
+        "fontWeight": "bold",
+      }
+    }
+  >
+    undefined
+  </p>
+  <p
+    style={
+      Object {
+        "fontWeight": "bold",
+      }
+    }
+  >
+    undefined, undefined undefined
+  </p>
+  <a>
+    Get Directions
+  </a>
+  <p>
+    (545) 523-7964
+  </p>
+   
+  <p>
+    <a
+      href="www.google.come"
+    >
+      undefined.com
+    </a>
+  </p>
+  <p>
+    <a
+      href="www.google.come"
+    >
+      Message the business
+    </a>
+  </p>
+  <p>
+    <a
+      href="www.google.come"
+    >
+      Send to your phone
+    </a>
+  </p>
+</div>
+`;

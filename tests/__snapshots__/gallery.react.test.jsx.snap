@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Gallery/> should render 1`] = `
+<div
+  style={
+    Object {
+      "alignItems": "center",
+      "background": "rgba(0, 0, 0, 0.4)",
+      "display": "flex",
+      "flexDirection": "column",
+      "height": "100%",
+      "left": "0",
+      "position": "fixed",
+      "top": "0",
+      "width": "100%",
+      "zIndex": "1",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "display": "flex",
+        "flexDirection": "column",
+        "height": "100%",
+        "paddingBottom": "32px",
+        "width": "1000px",
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "color": "white",
+          "cursor": "pointer",
+          "fontSize": "16pt",
+          "marginLeft": "auto",
+          "padding": "4px 8px",
+          "userSelect": "none",
+        }
+      }
+    >
+      exit X
+    </div>
+    <div
+      style={
+        Object {
+          "background": "white",
+          "borderRadius": "4px",
+          "display": "flex",
+          "flexDirection": "column",
+          "height": "100%",
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "alignItems": "center",
+            "height": "100%",
+            "position": "relative",
+            "width": "100%",
+          }
+        }
+      >
+        <div
+          onClick={[Function]}
+          style={
+            Object {
+              "bottom": "50%",
+              "cursor": "pointer",
+              "left": "0",
+              "position": "absolute",
+              "userSelect": "none",
+            }
+          }
+        >
+           left 
+        </div>
+        <div
+          onClick={[Function]}
+          style={
+            Object {
+              "bottom": "50%",
+              "cursor": "pointer",
+              "position": "absolute",
+              "right": "0",
+              "userSelect": "none",
+            }
+          }
+        >
+           right 
+        </div>
+        <img
+          src="https://s3-media4.fl.yelpcdn.com/bphoto/id/o.jpg"
+          style={
+            Object {
+              "height": "100%",
+              "objectFit": "contain",
+              "width": "100%",
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

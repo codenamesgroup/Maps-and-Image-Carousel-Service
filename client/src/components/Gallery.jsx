@@ -6,7 +6,7 @@ class Gallery extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			currentIndex: props.initialIndex,
+			currentIndex: props.initialIndex || 0,
 		};
 	}
 
