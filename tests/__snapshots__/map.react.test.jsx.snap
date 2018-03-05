@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Map/> should render with empty business object 1`] = `
+<div>
+  <img
+    onClick={[Function]}
+    src="https://maps.googleapis.com/maps/api/staticmap?zoom=13&size=286x135&maptype=roadmap
+				&markers=color:blue%7Clabel:S%7C0,0"
+    style={
+      Object {
+        "cursor": "pointer",
+      }
+    }
+  />
+</div>
+`;
