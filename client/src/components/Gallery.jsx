@@ -1,6 +1,8 @@
 import React from 'react';
-import reactCSS from 'reactcss';
+import reactCSS, { hover } from 'reactcss';
 import PropTypes from 'prop-types';
+
+import { CloseButton } from './CloseButton.jsx';
 
 class Gallery extends React.Component {
 	constructor(props) {
@@ -10,13 +12,15 @@ class Gallery extends React.Component {
 		};
 	}
 
-	clickLeft = () => {
+	/* Goes back an image in the gallery */
+	pageBack = () => {
 		this.setState({
 			currentIndex: this.state.currentIndex = Math.max(this.state.currentIndex - 1, 0),
 		});
 	}
 
-	clickRight = () => {
+	/* Goes forward an image in the gallery */
+	pageForward = () => {
 		this.setState({
 			currentIndex: Math.min(this.state.currentIndex + 1, this.props.photos.length - 1),
 		});
@@ -52,15 +56,6 @@ class Gallery extends React.Component {
 				width: '100%',
 				height: '100%',
 			},
-			closeButton: {
-				marginLeft: 'auto',
-				padding: '4px 8px',
-				color: 'white',
-				cursor: 'pointer',
-				fontSize: '16pt',
-				userSelect: 'none',
-			},
-
 			imageContainer: {
 				position: 'relative',
 				alignItems: 'center',
@@ -95,16 +90,16 @@ class Gallery extends React.Component {
 			<div style={styles.background}>
 				<div style={styles.container}>
 
-					<div style={styles.closeButton}
-						onClick={onClose}>
-						exit X
-					</div>
+					<span style={{marginLeft: 'auto'}}>
+						<CloseButton onClose={onClose}/>
+					</span>
 
 					<div style={styles.content}>
 						<div style={styles.imageContainer}>
 
-							<div style={styles.leftButton} onClick={this.clickLeft}> left </div>
-							<div style={styles.rightButton} onClick={this.clickRight}> right </div>
+							<div style={styles.leftButton} onClick={this.pageBack}> left </div>
+							<div style={styles.rightButton} onClick={this.pageForward}> right </div>
+
 							<img style={styles.image}
 								src={`https://s3-media4.fl.yelpcdn.com/bphoto/${photos[currentIndex].id}/o.jpg`}/>
 						</div>
@@ -122,5 +117,7 @@ Gallery.propTypes = {
 	initialIndex: PropTypes.number,
 	onClose: PropTypes.func,
 };
+
+Gallery = hover(Gallery);
 
 export { Gallery };
