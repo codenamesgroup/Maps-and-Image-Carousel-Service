@@ -10,7 +10,9 @@ describe('<CarouselImage/>', () => {
 		expect(shallowToJson(component)).toMatchSnapshot();
 	});
 
-	it('should display label when hovered', () => {
-		expect(true).toBe(true);
+	it('should be hoverable', () => {
+		expect(component.state().hover).toEqual(false);
+		component.simulate('mouseOver');
+		expect(component.state().hover).toEqual(true);
 	});
 });
