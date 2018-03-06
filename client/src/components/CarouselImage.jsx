@@ -32,7 +32,7 @@ class CarouselImage extends React.PureComponent {
 
 					margin: '0px',
 					padding: '8px 0',
-				}
+				},
 			},
 			hover: {
 				container: {
