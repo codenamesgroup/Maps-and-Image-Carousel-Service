@@ -5,7 +5,7 @@ import axios from 'axios';
 import { BusinessInfo } from './BusinessInfo.jsx';
 import { Carousel } from './Carousel.jsx';
 
-class App extends React.Component {
+class MapAndImages extends React.Component {
   constructor(props) {
     super(props);
 
@@ -67,4 +67,4 @@ class App extends React.Component {
   }
 }
 
-export { App };
+export { MapAndImages };
