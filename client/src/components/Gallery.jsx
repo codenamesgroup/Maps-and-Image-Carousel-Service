@@ -59,6 +59,9 @@ class Gallery extends React.Component {
 				height: '100%',
 			},
 			closeButton: {
+				display: 'flex',
+				justifyContent: 'center',
+				alignItems: 'center',
 				marginLeft: 'auto',
 				height: '32px',
 			},
