@@ -75,19 +75,43 @@ class Gallery extends React.Component {
 				objectFit: 'contain',
 			},
 			leftButton: {
+				display: 'flex',
+				alignItems: 'center',
+
 				position: 'absolute',
+				width: '50%',
+				height: '100%',
+
+				fontSize: '60px',
+				color: 'white',
+				textAlign: 'left',
 				cursor: 'pointer',
 				userSelect: 'none',
+
 				left: '0',
-				bottom: '50%',
+				bottom: '0',
 			},
 			rightButton: {
+				display: 'flex',
+				justifyContent: 'flex-end',
+				alignItems: 'center',
+
 				position: 'absolute',
+				width: '50%',
+				height: '100%',
+
+				fontSize: '60px',
+				color: 'white',
+				textAlign: 'right',
 				cursor: 'pointer',
 				userSelect: 'none',
+
 				right: '0',
-				bottom: '50%',
-			}
+				bottom: '0',
+			},
+			paginationIcon: {
+				margin: '16px',
+			},
 		};
 
 		const { photos, onClose } = this.props;
@@ -104,18 +128,26 @@ class Gallery extends React.Component {
 					{/* Gallery Content */}
 					<div style={styles.content}>
 
-						{/* Image container */}
+						{/* Image Container */}
 						<div style={styles.imageContainer}>
 
-							<div style={styles.leftButton} onClick={this.pageBack}> left </div>
-							<div style={styles.rightButton} onClick={this.pageForward}> right </div>
+							{/* Left Button */}
+							<div style={styles.leftButton} onClick={this.pageBack}>
+								<div style={styles.paginationIcon}> ❮ </div>
+							</div>
+
+							{/* Right Button */}
+							<div style={styles.rightButton} onClick={this.pageForward}>
+								<div style={styles.paginationIcon}> ❯ </div>
+							</div>
 
 							<img style={styles.image}
 								src={`https://s3-media4.fl.yelpcdn.com/bphoto/${photos[currentIndex].id}/o.jpg`}/>
 						</div>
 
+						{/* extra info */}
 						<div>
-							swag
+
 						</div>
 					</div>
 
