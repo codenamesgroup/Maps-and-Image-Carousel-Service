@@ -230,12 +230,6 @@ class Gallery extends React.Component {
 							<p style={styles.date}> March 10, 2010</p>
 						</div>
 
-							{/* <p>Business Name</p>
-							<p>From the business owner</p>
-
-							<p>This is my really legit caption</p>
-
-							<p>March 10, 2015</p> */}
 					</div>
 
 				</div>
