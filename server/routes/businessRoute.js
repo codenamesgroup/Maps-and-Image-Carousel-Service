@@ -19,7 +19,7 @@ businessRoute.get('/:id', (req, res) => {
 		});
 });
 
-businessRoute.get('/photos/:id', (req, res) => {
+businessRoute.get('/:id/photos', (req, res) => {
 	database.query(`
 		SELECT * FROM photo WHERE business_id='${req.params.id}' LIMIT 64;
 `)
