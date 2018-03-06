@@ -19,7 +19,7 @@ class App extends React.Component {
     let urlArray = window.location.href.split('/');
     let url = urlArray[urlArray.length - 2];
 
-    axios.get(`/business/${url}`)
+    axios.get(`/map-and-images/business/${url}`)
       .then((response) => {
         return response.data;
       })
@@ -30,7 +30,7 @@ class App extends React.Component {
         console.error(error);
       });
 
-    axios.get(`/business/photos/${url}`)
+    axios.get(`/map-and-images/business/${url}/photos`)
       .then((response) => {
         return response.data;
       })

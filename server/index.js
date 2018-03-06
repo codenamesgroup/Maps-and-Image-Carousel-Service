@@ -15,7 +15,7 @@ app.use('/:id', express.static(__dirname + '/../client/dist'));
 app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
 app.get('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
-app.use('/business', businessRoute);
+app.use('/map-and-images/business', businessRoute);
 
 let port =  process.env.port || 3001;
 app.listen(port, () => {
