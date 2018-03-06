@@ -135,6 +135,48 @@ class Gallery extends React.Component {
 				fontSize: '16px',
 				color: 'lightgray',
 				textAlign: 'center',
+			},
+
+
+			sidebar: {
+				display: 'flex',
+				flexDirection: 'column',
+				padding: '16px',
+			},
+			businessInfo: {
+				display: 'flex',
+				flexDirection: 'row',
+			},
+			avatar: {
+				width: '38px',
+				height: '38px',
+				borderRadius: '4px',
+				background:'lightgray',
+			},
+			businessTitle: {
+				display: 'flex',
+				flexDirection: 'column',
+				margin: 'auto 16px',
+			},
+			field: {
+				padding: '0',
+				margin: '0',
+				fontSize: '12pt',
+			},
+			subField: {
+				padding: '0',
+				margin: '0',
+				fontSize: '8pt',
+				color: 'gray',
+			},
+			caption: {
+				padding: '8pt 0',
+				margin: '0',
+			},
+			date: {
+				margin: '0',
+				fontSize: '10pt',
+				color: 'gray',
 			}
 		};
 
@@ -175,15 +217,25 @@ class Gallery extends React.Component {
 						</div>
 
 						{/* extra info */}
-						<div>
-							<a>Business Name</a>
+						<div style={styles.sidebar}>
+							<div style={styles.businessInfo}>
+								<div style={styles.avatar}/>
+								<div style={styles.businessTitle}>
+									<p style={styles.field}>Business Name</p>
+									<p style={styles.subField}>From the business owner</p>
+								</div>
+							</div>
+
+							<p style={styles.caption}> This is a caption</p>
+							<p style={styles.date}> March 10, 2010</p>
+						</div>
+
+							{/* <p>Business Name</p>
 							<p>From the business owner</p>
 
 							<p>This is my really legit caption</p>
 
-							<p>March 10, 2015</p>
-
-						</div>
+							<p>March 10, 2015</p> */}
 					</div>
 
 				</div>
