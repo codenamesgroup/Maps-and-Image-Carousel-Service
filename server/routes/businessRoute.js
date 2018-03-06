@@ -22,7 +22,7 @@ businessRoute.get('/:id', (req, res) => {
 businessRoute.get('/photos/:id', (req, res) => {
 	database.query(`
 		SELECT * FROM photo WHERE business_id='${req.params.id}' LIMIT 64;
-	`)
+`)
 		.then((data) => {
 			return data[0];
 		})
