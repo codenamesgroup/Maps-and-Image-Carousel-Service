@@ -50,8 +50,9 @@ class Gallery extends React.Component {
 				paddingBottom: '32px',
 			},
 			content: {
-				display: 'flex',
-				flexDirection: 'column',
+				display: 'grid',
+				gridTemplateColumns: '1fr 300px',
+
 				borderRadius: '6px',
 				background: 'white',
 				width: '100%',
@@ -64,6 +65,7 @@ class Gallery extends React.Component {
 			imageContainer: {
 				position: 'relative',
 				alignItems: 'center',
+				background: 'black',
 				height: '100%',
 				width: '100%',
 			},
@@ -101,14 +103,20 @@ class Gallery extends React.Component {
 
 					{/* Gallery Content */}
 					<div style={styles.content}>
-						{/* <div style={styles.imageContainer}>
+
+						{/* Image container */}
+						<div style={styles.imageContainer}>
 
 							<div style={styles.leftButton} onClick={this.pageBack}> left </div>
 							<div style={styles.rightButton} onClick={this.pageForward}> right </div>
 
 							<img style={styles.image}
 								src={`https://s3-media4.fl.yelpcdn.com/bphoto/${photos[currentIndex].id}/o.jpg`}/>
-						</div> */}
+						</div>
+
+						<div>
+							swag
+						</div>
 					</div>
 
 				</div>
