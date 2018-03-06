@@ -1,7 +1,7 @@
 import mysql from 'mysql2';
 import Sequelize from 'sequelize';
 
-const database = new Sequelize('chompy', 'student', 'student', {
+const database = new Sequelize('chompy', 'root', null, {
 	host: 'localhost',
 	dialect: 'mysql',
 });
