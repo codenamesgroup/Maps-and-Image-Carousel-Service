@@ -14,15 +14,23 @@ class Gallery extends React.Component {
 
 	/* Goes back an image in the gallery */
 	pageBack = () => {
+		const { currentIndex } = this.state;
+
 		this.setState({
-			currentIndex: this.state.currentIndex = Math.max(this.state.currentIndex - 1, 0),
+			currentIndex: currentIndex !== 0
+			? currentIndex - 1
+			: this.props.photos.length - 1
 		});
 	}
 
 	/* Goes forward an image in the gallery */
 	pageForward = () => {
+		const { currentIndex } = this.state;
+
 		this.setState({
-			currentIndex: Math.min(this.state.currentIndex + 1, this.props.photos.length - 1),
+			currentIndex: currentIndex !== this.props.photos.length - 1
+				? currentIndex + 1
+				: 0
 		});
 	}
 
@@ -82,6 +90,8 @@ class Gallery extends React.Component {
 				alignItems: 'center',
 
 				position: 'absolute',
+				left: '0',
+				bottom: '0',
 				width: '50%',
 				height: '100%',
 
@@ -90,9 +100,6 @@ class Gallery extends React.Component {
 				textAlign: 'left',
 				cursor: 'pointer',
 				userSelect: 'none',
-
-				left: '0',
-				bottom: '0',
 			},
 			rightButton: {
 				display: 'flex',
@@ -100,6 +107,8 @@ class Gallery extends React.Component {
 				alignItems: 'center',
 
 				position: 'absolute',
+				right: '0',
+				bottom: '0',
 				width: '50%',
 				height: '100%',
 
@@ -108,13 +117,25 @@ class Gallery extends React.Component {
 				textAlign: 'right',
 				cursor: 'pointer',
 				userSelect: 'none',
-
-				right: '0',
-				bottom: '0',
 			},
 			paginationIcon: {
 				margin: '16px',
 			},
+			imageFooter: {
+				display: 'flex',
+				justifyContent: 'center',
+				alignItems: 'center',
+
+				position: 'absolute',
+				bottom: '0',
+				width: '100%',
+				padding: '8px 0',
+
+				background: 'rgba(0, 0, 0, 0.7)',
+				fontSize: '16px',
+				color: 'lightgray',
+				textAlign: 'center',
+			}
 		};
 
 		const { photos, onClose } = this.props;
@@ -144,12 +165,23 @@ class Gallery extends React.Component {
 								<div style={styles.paginationIcon}> ❯ </div>
 							</div>
 
+							{/* Image Footer */}
+							<div style={styles.imageFooter}>
+								{`${currentIndex + 1} of ${photos.length}`}
+							</div>
+
 							<img style={styles.image}
 								src={`https://s3-media4.fl.yelpcdn.com/bphoto/${photos[currentIndex].id}/o.jpg`}/>
 						</div>
 
 						{/* extra info */}
 						<div>
+							<a>Business Name</a>
+							<p>From the business owner</p>
+
+							<p>This is my really legit caption</p>
+
+							<p>March 10, 2015</p>
 
 						</div>
 					</div>

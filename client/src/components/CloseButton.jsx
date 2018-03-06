@@ -8,7 +8,7 @@ class CloseButton extends React.PureComponent {
 			default: {
 				closeButton : {
 					textAlign: 'center',
-					color: 'white',
+					color: 'lightgray',
 					cursor: 'pointer',
 					fontSize: '16pt',
 					userSelect: 'none',
@@ -16,7 +16,7 @@ class CloseButton extends React.PureComponent {
 			},
 			hover: {
 				closeButton: {
-					color: 'lightgray',
+					color: 'white',
 				}
 			}
 		}, this.props);
