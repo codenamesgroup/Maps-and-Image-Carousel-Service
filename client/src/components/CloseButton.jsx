@@ -7,7 +7,10 @@ class CloseButton extends React.PureComponent {
 		const styles = reactCSS({
 			default: {
 				closeButton : {
-					padding: '4px 8px',
+					height: '100%',
+					margin: 'auto',
+					padding: '0',
+					textAlign: 'center',
 					color: 'white',
 					cursor: 'pointer',
 					fontSize: '16pt',
@@ -22,10 +25,10 @@ class CloseButton extends React.PureComponent {
 		}, this.props);
 
 		return (
-			<span style={styles.closeButton}
+			<div style={styles.closeButton}
 				onClick={this.props.onClose}>
 				exit ✕
-			</span>
+			</div>
 		);
 	}
 }
