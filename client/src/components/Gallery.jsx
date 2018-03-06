@@ -1,6 +1,8 @@
 import React from 'react';
-import reactCSS from 'reactcss';
+import reactCSS, { hover } from 'reactcss';
 import PropTypes from 'prop-types';
+
+import { CloseButton } from './CloseButton.jsx';
 
 class Gallery extends React.Component {
 	constructor(props) {
@@ -10,15 +12,25 @@ class Gallery extends React.Component {
 		};
 	}
 
-	clickLeft = () => {
+	/* Goes back an image in the gallery */
+	pageBack = () => {
+		const { currentIndex } = this.state;
+
 		this.setState({
-			currentIndex: this.state.currentIndex = Math.max(this.state.currentIndex - 1, 0),
+			currentIndex: currentIndex !== 0
+			? currentIndex - 1
+			: this.props.photos.length - 1
 		});
 	}
 
-	clickRight = () => {
+	/* Goes forward an image in the gallery */
+	pageForward = () => {
+		const { currentIndex } = this.state;
+
 		this.setState({
-			currentIndex: Math.min(this.state.currentIndex + 1, this.props.photos.length - 1),
+			currentIndex: currentIndex !== this.props.photos.length - 1
+				? currentIndex + 1
+				: 0
 		});
 	}
 
@@ -34,36 +46,37 @@ class Gallery extends React.Component {
 				height: '100%',
 				left: '0',
 				top: '0',
-
 				background: 'rgba(0, 0, 0, 0.4)',
 			},
 			container: {
 				display: 'flex',
 				flexDirection: 'column',
-				width: '1000px',
+				minWidth: '960px',
+				maxWidth: '1300px',
+				width: '95%',
 				height: '100%',
 				paddingBottom: '32px',
 			},
 			content: {
-				display: 'flex',
-				flexDirection: 'column',
-				borderRadius: '4px',
+				display: 'grid',
+				gridTemplateColumns: '1fr 300px',
+
+				borderRadius: '6px',
 				background: 'white',
 				width: '100%',
 				height: '100%',
 			},
 			closeButton: {
+				display: 'flex',
+				justifyContent: 'center',
+				alignItems: 'center',
 				marginLeft: 'auto',
-				padding: '4px 8px',
-				color: 'white',
-				cursor: 'pointer',
-				fontSize: '16pt',
-				userSelect: 'none',
+				height: '32px',
 			},
-
 			imageContainer: {
 				position: 'relative',
 				alignItems: 'center',
+				background: 'black',
 				height: '100%',
 				width: '100%',
 			},
@@ -73,18 +86,97 @@ class Gallery extends React.Component {
 				objectFit: 'contain',
 			},
 			leftButton: {
+				display: 'flex',
+				alignItems: 'center',
+
 				position: 'absolute',
+				left: '0',
+				bottom: '0',
+				width: '50%',
+				height: '100%',
+
+				fontSize: '60px',
+				color: 'white',
+				textAlign: 'left',
 				cursor: 'pointer',
 				userSelect: 'none',
-				left: '0',
-				bottom: '50%',
 			},
 			rightButton: {
+				display: 'flex',
+				justifyContent: 'flex-end',
+				alignItems: 'center',
+
 				position: 'absolute',
+				right: '0',
+				bottom: '0',
+				width: '50%',
+				height: '100%',
+
+				fontSize: '60px',
+				color: 'white',
+				textAlign: 'right',
 				cursor: 'pointer',
 				userSelect: 'none',
-				right: '0',
-				bottom: '50%',
+			},
+			paginationIcon: {
+				margin: '16px',
+			},
+			imageFooter: {
+				display: 'flex',
+				justifyContent: 'center',
+				alignItems: 'center',
+
+				position: 'absolute',
+				bottom: '0',
+				width: '100%',
+				padding: '8px 0',
+
+				background: 'rgba(0, 0, 0, 0.7)',
+				fontSize: '16px',
+				color: 'lightgray',
+				textAlign: 'center',
+			},
+
+
+			sidebar: {
+				display: 'flex',
+				flexDirection: 'column',
+				padding: '16px',
+			},
+			businessInfo: {
+				display: 'flex',
+				flexDirection: 'row',
+			},
+			avatar: {
+				width: '38px',
+				height: '38px',
+				borderRadius: '4px',
+				background:'lightgray',
+			},
+			businessTitle: {
+				display: 'flex',
+				flexDirection: 'column',
+				margin: 'auto 16px',
+			},
+			field: {
+				padding: '0',
+				margin: '0',
+				fontSize: '12pt',
+			},
+			subField: {
+				padding: '0',
+				margin: '0',
+				fontSize: '8pt',
+				color: 'gray',
+			},
+			caption: {
+				padding: '8pt 0',
+				margin: '0',
+			},
+			date: {
+				margin: '0',
+				fontSize: '10pt',
+				color: 'gray',
 			}
 		};
 
@@ -93,23 +185,58 @@ class Gallery extends React.Component {
 
 		return (
 			<div style={styles.background}>
+
 				<div style={styles.container}>
+					<span style={styles.closeButton}>
+						<CloseButton onClose={onClose}/>
+					</span>
 
-					<div style={styles.closeButton}
-						onClick={onClose}>
-						exit X
-					</div>
-
+					{/* Gallery Content */}
 					<div style={styles.content}>
+
+						{/* Image Container */}
 						<div style={styles.imageContainer}>
 
-							<div style={styles.leftButton} onClick={this.clickLeft}> left </div>
-							<div style={styles.rightButton} onClick={this.clickRight}> right </div>
+							{/* Left Button */}
+							<div style={styles.leftButton} onClick={this.pageBack}>
+								<div style={styles.paginationIcon}> ❮ </div>
+							</div>
+
+							{/* Right Button */}
+							<div style={styles.rightButton} onClick={this.pageForward}>
+								<div style={styles.paginationIcon}> ❯ </div>
+							</div>
+
+							{/* Image Footer */}
+							<div style={styles.imageFooter}>
+								{`${currentIndex + 1} of ${photos.length}`}
+							</div>
+
 							<img style={styles.image}
 								src={`https://s3-media4.fl.yelpcdn.com/bphoto/${photos[currentIndex].id}/o.jpg`}/>
 						</div>
-					</div>
 
+						{/* extra info */}
+						<div style={styles.sidebar}>
+							<div style={styles.businessInfo}>
+								<div style={styles.avatar}/>
+								<div style={styles.businessTitle}>
+									<p style={styles.field}>Business Name</p>
+									<p style={styles.subField}>From the business owner</p>
+								</div>
+							</div>
+
+							<p style={styles.caption}> This is a caption</p>
+							<p style={styles.date}> March 10, 2010</p>
+						</div>
+
+							{/* <p>Business Name</p>
+							<p>From the business owner</p>
+
+							<p>This is my really legit caption</p>
+
+							<p>March 10, 2015</p> */}
+					</div>
 
 				</div>
 			</div>
@@ -122,5 +249,7 @@ Gallery.propTypes = {
 	initialIndex: PropTypes.number,
 	onClose: PropTypes.func,
 };
+
+Gallery = hover(Gallery);
 
 export { Gallery };
