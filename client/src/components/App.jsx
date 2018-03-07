@@ -54,7 +54,6 @@ class MapAndImages extends React.Component {
         width: '1000px',
 
         margin: 'auto',
-        background: 'lightgray',
       }
     }
 
