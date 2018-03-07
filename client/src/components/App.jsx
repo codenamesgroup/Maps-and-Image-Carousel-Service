@@ -16,8 +16,18 @@ class MapAndImages extends React.Component {
   }
 
   componentDidMount() {
-    let urlArray = window.location.href.split('/');
-    let url = urlArray[urlArray.length - 1];
+    let url = window.location.href.split('/').pop();
+    url = url.split('?');
+    if (url.length > 1) {
+      let urlParams = url[1].split('&');
+      urlParams = urlParams.reduce((acc, param) => {
+        param = param.split('=');
+        acc[param[0]] = param[1];
+        return acc;
+      }, {id: url[0]});
+    }
+
+    url = url[0];
 
     axios.get(`/map-and-images/business/${url}`)
       .then((response) => {
