@@ -16,7 +16,9 @@ class MapAndImages extends React.Component {
   }
 
   componentDidMount() {
-    let url = window.location.href.split('/').pop();
+    let url = window.location.href;
+    url = url.charAt(url.length - 1) === '/' ? url.substr(0, url.length - 1) : url;
+    url = url.split('/').pop();
     url = url.split('?');
     if (url.length > 1) {
       let urlParams = url[1].split('&');
