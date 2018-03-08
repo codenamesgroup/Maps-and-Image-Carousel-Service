@@ -1,8 +1,8 @@
 import mysql from 'mysql2';
 import Sequelize from 'sequelize';
 
-const database = new Sequelize('chompy', 'root', null, {
-	host: 'localhost',
+const database = new Sequelize('chompyremote', 'root', 'chompydatabase', {
+	host: 'chompy-test-database.cr8yw4uwndba.us-west-1.rds.amazonaws.com',
 	dialect: 'mysql',
 });
 

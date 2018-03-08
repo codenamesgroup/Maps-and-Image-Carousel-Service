@@ -12,7 +12,8 @@
     "webpack": "webpack -d --watch",
     "test": "jest --watch",
     "test:quick": "jest",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "docker": "webpack -d; node bin/init"
   },
   "jest": {
     "setupFiles": [
