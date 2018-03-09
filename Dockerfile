@@ -6,7 +6,7 @@ RUN mkdir -p /src/app
 
 WORKDIR /src/app
 
-RUN yarn install
+RUN yarn
 
 COPY . /src/app
 
