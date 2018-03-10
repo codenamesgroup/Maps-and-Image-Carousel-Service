@@ -27,7 +27,16 @@ class Map extends React.PureComponent {
 	}
 
 	getMapUri = () => {
-		return `https://maps.googleapis.com/maps/api/staticmap?key=${GOOGLE_API_KEY}&zoom=13&size=285x135&maptype=roadmap&markers=color:red%7Clabel:S%7C${this.props.latitude},${this.props.longitude}`;
+		return `
+			https://maps.googleapis.com/maps/api/staticmap
+				?key=${GOOGLE_API_KEY}
+				&zoom=13
+				&size=285x135
+				&maptype=roadmap
+				&markers=color:red%7Clabel:S%7C
+				${this.props.latitude},
+				${this.props.longitude}
+		`;
 	}
 
 	render() {
@@ -39,10 +48,5 @@ class Map extends React.PureComponent {
 		);
 	}
 }
-
-Map.propTypes = {
-	longitude: PropTypes.number,
-	latitude:  PropTypes.number,
-};
 
 export { Map };
