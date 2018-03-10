@@ -12,6 +12,7 @@ class Carousel extends React.Component {
 		this.state = {
 			galleryOpen: false,
 			galleryStartPage: 0,
+			hoveredIndex: 1,
 		};
 	};
 
@@ -26,6 +27,10 @@ class Carousel extends React.Component {
 		this.setState({galleryOpen: false});
 	}
 
+	onMouseEnter = (i) => {
+		this.setState({ hoveredIndex: i});
+	}
+
 	render() {
 		let styles = reactCSS({
 			'default': {
@@ -34,7 +39,6 @@ class Carousel extends React.Component {
 					flexDirection: 'row',
 					justifyContent: 'center',
 					alignItems: 'center',
-					width: '100%',
 				},
 			},
 		});
@@ -42,13 +46,25 @@ class Carousel extends React.Component {
 		return (
 			<div style={styles.container}>
 				<CarouselImage image={this.props.photos && this.props.photos.length >= 1 ? this.props.photos[0] : {}}
+					business={this.props.business || {}}
 					onClick={this.itemOnClick.bind(null, 0)}
+					enlarged = {this.state.hoveredIndex === 0}
+					onMouseEnter={this.onMouseEnter.bind(this, 0)}
+					onMouseLeave={this.onMouseEnter.bind(this, 1)}
 				/>
 				<CarouselImage image={this.props.photos && this.props.photos.length >= 2 ? this.props.photos[1] : {}}
+					business={this.props.business || {}}
 					onClick={this.itemOnClick.bind(null, 1)}
+					enlarged = {this.state.hoveredIndex === 1}
+					onMouseEnter={this.onMouseEnter.bind(this, 1)}
+					onMouseLeave={this.onMouseEnter.bind(this, 1)}
 				/>
 				<CarouselImage image={this.props.photos && this.props.photos.length >= 3 ? this.props.photos[2] : {}}
+					business={this.props.business || {}}
 					onClick={this.itemOnClick.bind(null, 2)}
+					enlarged = {this.state.hoveredIndex === 2}
+					onMouseEnter={this.onMouseEnter.bind(this, 2)}
+					onMouseLeave={this.onMouseEnter.bind(this, 1)}
 				/>
 
 				{
@@ -62,6 +78,7 @@ class Carousel extends React.Component {
 };
 
 Carousel.propTypes = {
+	business: PropTypes.object,
 	photos: PropTypes.array,
 };
 
