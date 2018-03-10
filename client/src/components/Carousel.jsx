@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import reactCSS, { hover } from 'reactcss';
 
+import { FlexDiv } from './styledComponents';
 import { CarouselImage } from './CarouselImage.jsx';
 import { Gallery } from './Gallery.jsx';
 
@@ -46,19 +46,8 @@ class Carousel extends React.Component {
 	}
 
 	render() {
-		let styles = reactCSS({
-			'default': {
-				container: {
-					display: 'flex',
-					flexDirection: 'row',
-					justifyContent: 'center',
-					alignItems: 'center',
-				},
-			},
-		});
-
 		return (
-			<div style={styles.container}>
+			<FlexDiv>
 				{this.props.photos.slice(0, 3).map((photo, i) => {
 					return <CarouselImage key={i}
 						image={photo} business={this.props.business}
@@ -74,7 +63,7 @@ class Carousel extends React.Component {
 					? <Gallery photos={this.props.photos} initialIndex={this.state.galleryStartPage} onClose={this.galleryClose}/>
 					: undefined
 				}
-			</div>
+			</FlexDiv>
 		)
 	}
 };
