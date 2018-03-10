@@ -20,19 +20,19 @@ const BusinessInfo = (props) => {
 
 		infoContainer: {
 			display: 'grid',
-			gridTemplateColumns: '24px 1fr',
+			gridTemplateColumns: '32px 1fr',
 			padding: '8px',
 		},
 
 		icon: {
 			width:'18px',
 			height:'18px',
-			margin: 'auto',
+			margin: '4px auto',
 			color: 'darkgray',
 		},
 
 		text: {
-			margin: '4px',
+			margin: 'auto 0px',
 			padding: '0',
 			fontSize: '10pt',
 		},
