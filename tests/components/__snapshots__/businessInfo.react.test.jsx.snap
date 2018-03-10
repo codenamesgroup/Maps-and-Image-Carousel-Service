@@ -5,6 +5,7 @@ exports[`<BusinessInfo/> should render with empty business object 1`] = `
   style={
     Object {
       "background": "white",
+      "border": "1px solid #cccccc",
       "fontSize": "10px",
       "heigth": "300px",
       "padding": "4px",
@@ -16,51 +17,163 @@ exports[`<BusinessInfo/> should render with empty business object 1`] = `
     latitude={0}
     longitude={0}
   />
-  <p
+  <div
     style={
       Object {
-        "fontWeight": "bold",
+        "display": "grid",
+        "gridTemplateColumns": "32px 1fr",
+        "padding": "8px",
       }
     }
   >
-    undefined
-  </p>
-  <p
-    style={
-      Object {
-        "fontWeight": "bold",
+    <FaMapMarker
+      style={
+        Object {
+          "color": "darkgray",
+          "height": "18px",
+          "margin": "4px auto",
+          "width": "18px",
+        }
       }
-    }
-  >
-    undefined, undefined undefined
-  </p>
-  <a>
-    Get Directions
-  </a>
-  <p>
-    (545) 523-7964
-  </p>
-   
-  <p>
-    <a
-      href="www.google.come"
+    />
+    <div>
+      <p
+        style={
+          Object {
+            "fontSize": "10pt",
+            "fontWeight": "bold",
+            "margin": "0",
+            "padding": "0",
+          }
+        }
+      >
+        undefined
+      </p>
+      <p
+        style={
+          Object {
+            "fontSize": "10pt",
+            "fontWeight": "bold",
+            "margin": "0",
+            "padding": "0",
+          }
+        }
+      >
+        undefined, undefined undefined
+      </p>
+    </div>
+    <FaMapSigns
+      style={
+        Object {
+          "color": "darkgray",
+          "height": "18px",
+          "margin": "4px auto",
+          "width": "18px",
+        }
+      }
+    />
+    <p
+      style={
+        Object {
+          "fontSize": "10pt",
+          "margin": "auto 0px",
+          "padding": "0",
+        }
+      }
     >
-      undefined.com
-    </a>
-  </p>
-  <p>
-    <a
-      href="www.google.come"
+      <a
+        style={
+          Object {
+            "color": "blue",
+            "cursor": "pointer",
+          }
+        }
+      >
+        Get Directions
+      </a>
+    </p>
+    <FaPhone
+      style={
+        Object {
+          "color": "darkgray",
+          "height": "18px",
+          "margin": "4px auto",
+          "width": "18px",
+        }
+      }
+    />
+    <p
+      style={
+        Object {
+          "fontSize": "10pt",
+          "margin": "auto 0px",
+          "padding": "0",
+        }
+      }
     >
-      Message the business
-    </a>
-  </p>
-  <p>
-    <a
-      href="www.google.come"
+      (545) 523-7964
+    </p>
+     
+    <FaExternalLink
+      style={
+        Object {
+          "color": "darkgray",
+          "height": "18px",
+          "margin": "4px auto",
+          "width": "18px",
+        }
+      }
+    />
+    <p
+      style={
+        Object {
+          "fontSize": "10pt",
+          "margin": "auto 0px",
+          "padding": "0",
+        }
+      }
     >
-      Send to your phone
-    </a>
-  </p>
+      <a
+        style={
+          Object {
+            "color": "blue",
+            "cursor": "pointer",
+          }
+        }
+      >
+        undefined.com
+      </a>
+    </p>
+    <FaMobile
+      style={
+        Object {
+          "color": "darkgray",
+          "height": "18px",
+          "margin": "4px auto",
+          "width": "18px",
+        }
+      }
+    />
+    <p
+      style={
+        Object {
+          "fontSize": "10pt",
+          "margin": "auto 0px",
+          "padding": "0",
+        }
+      }
+    >
+      <a
+        style={
+          Object {
+            "color": "blue",
+            "cursor": "pointer",
+          }
+        }
+      >
+        Send to your phone
+      </a>
+    </p>
+  </div>
 </div>
 `;

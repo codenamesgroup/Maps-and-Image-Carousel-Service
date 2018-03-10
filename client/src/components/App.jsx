@@ -72,7 +72,7 @@ class MapAndImages extends React.Component {
     return (
       <div style={styles.container}>
         <BusinessInfo business={this.state.business}/>
-        <Carousel photos={this.state.photos || []}/>
+        <Carousel photos={this.state.photos || []} business={this.state.business}/>
       </div>
     );
   }

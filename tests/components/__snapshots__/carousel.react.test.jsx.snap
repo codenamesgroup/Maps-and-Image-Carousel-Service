@@ -18,6 +18,7 @@ exports[`<Carousel/> should render without props 1`] = `
     onClick={[Function]}
   />
   <Hover
+    enlarged={true}
     image={Object {}}
     onClick={[Function]}
   />
