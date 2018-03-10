@@ -6,11 +6,10 @@ RUN mkdir -p /src/app
 
 WORKDIR /src/app
 
-RUN yarn
-
 COPY . /src/app
 
-#@TODO: I need to make this virtual
+RUN yarn
+
 EXPOSE 3001
 
 CMD [ "yarn", "docker" ]

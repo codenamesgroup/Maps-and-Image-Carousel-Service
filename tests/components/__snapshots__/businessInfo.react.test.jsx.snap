@@ -5,6 +5,7 @@ exports[`<BusinessInfo/> should render with empty business object 1`] = `
   style={
     Object {
       "background": "white",
+      "border": "1px solid #cccccc",
       "fontSize": "10px",
       "heigth": "300px",
       "padding": "4px",
@@ -16,51 +17,55 @@ exports[`<BusinessInfo/> should render with empty business object 1`] = `
     latitude={0}
     longitude={0}
   />
-  <p
-    style={
-      Object {
-        "fontWeight": "bold",
-      }
-    }
+  <div
+    style={Object {}}
   >
-    undefined
-  </p>
-  <p
-    style={
-      Object {
-        "fontWeight": "bold",
+    <p
+      style={
+        Object {
+          "fontWeight": "bold",
+        }
       }
-    }
-  >
-    undefined, undefined undefined
-  </p>
-  <a>
-    Get Directions
-  </a>
-  <p>
-    (545) 523-7964
-  </p>
-   
-  <p>
-    <a
-      href="www.google.come"
     >
-      undefined.com
-    </a>
-  </p>
-  <p>
-    <a
-      href="www.google.come"
+      undefined
+    </p>
+    <p
+      style={
+        Object {
+          "fontWeight": "bold",
+        }
+      }
     >
-      Message the business
+      undefined, undefined undefined
+    </p>
+    <a>
+      Get Directions
     </a>
-  </p>
-  <p>
-    <a
-      href="www.google.come"
-    >
-      Send to your phone
-    </a>
-  </p>
+    <p>
+      (545) 523-7964
+    </p>
+     
+    <p>
+      <a
+        href="www.google.come"
+      >
+        undefined.com
+      </a>
+    </p>
+    <p>
+      <a
+        href="www.google.come"
+      >
+        Message the business
+      </a>
+    </p>
+    <p>
+      <a
+        href="www.google.come"
+      >
+        Send to your phone
+      </a>
+    </p>
+  </div>
 </div>
 `;

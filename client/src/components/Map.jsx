@@ -9,12 +9,13 @@ const Map = (props) => {
 	};
 
 	let style = {
-		cursor: 'pointer',
-		width: '286px',
+		border: '1px solid #cccccc',
+		width: '285px',
 		height: '135px',
+		cursor: 'pointer',
 	};
 
-	let mapUri = `https://maps.googleapis.com/maps/api/staticmap?key=${GOOGLE_API_KEY}&zoom=13&size=286x135&maptype=roadmap&markers=color:red%7Clabel:S%7C${props.latitude},${props.longitude}`;
+	let mapUri = `https://maps.googleapis.com/maps/api/staticmap?key=${GOOGLE_API_KEY}&zoom=13&size=285x135&maptype=roadmap&markers=color:red%7Clabel:S%7C${props.latitude},${props.longitude}`;
 
 	return (
 		<div>
