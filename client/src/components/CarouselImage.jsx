@@ -65,10 +65,11 @@ class CarouselImage extends React.PureComponent {
 	`;
 
 	static profileIcon = styled.img`
+		visibility: hidden;
 		background: lightgray;
 		border-radius: 6px;
 		border-width: 0;
-		width: 30px;
+		width: 10px;
 		height: 30px;
 		margin: 0 8px;
 	`;

@@ -142,6 +142,7 @@ class Gallery extends React.Component {
 	`;
 
 	static avatar = styled.img`
+		display: none;
 		width: 38px;
 		height: 38px;
 		border-radius: 4px;
@@ -205,7 +206,6 @@ class Gallery extends React.Component {
 						{/* extra info */}
 						<Gallery.column>
 							<FlexDiv>
-								<Gallery.avatar/>
 								<Gallery.titleContainer>
 									<Field>{this.props.business.name}</Field>
 									<SubField>From the business owner</SubField>
