@@ -1,14 +1,26 @@
 import React from 'react';
-import reactCSS, { hover } from 'reactcss';
 import PropTypes from 'prop-types';
+
+import { FlexDivCol } from './styledComponents';
 
 import { CloseButton } from './CloseButton.jsx';
 
 class Gallery extends React.Component {
+	static propTypes = {
+		photos: PropTypes.array,
+		initialIndex: PropTypes.number,
+		onClose: PropTypes.func,
+	};
+
+	static defaultProps = {
+		photos: [],
+		initialIndex: 0,
+	};
+
 	constructor(props) {
 		super(props);
 		this.state = {
-			currentIndex: props.initialIndex || 0,
+			currentIndex: props.initialIndex,
 		};
 	}
 
@@ -34,20 +46,19 @@ class Gallery extends React.Component {
 		});
 	}
 
+	static background = FlexDivCol.extend`
+		position: fixed;
+		align-items: center;
+		z-index: 1;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background: rgba(0, 0, 0, 0.4);
+	`;
+
 	render() {
 		let styles = {
-			background: {
-				position: 'fixed',
-				display: 'flex',
-				flexDirection: 'column',
-				alignItems: 'center',
-				zIndex: '1',
-				width: '100%',
-				height: '100%',
-				left: '0',
-				top: '0',
-				background: 'rgba(0, 0, 0, 0.4)',
-			},
 			container: {
 				display: 'flex',
 				flexDirection: 'column',
@@ -184,7 +195,7 @@ class Gallery extends React.Component {
 		const { currentIndex } = this.state;
 
 		return (
-			<div style={styles.background}>
+			<Gallery.background>
 
 				<div style={styles.container}>
 					<span style={styles.closeButton}>
@@ -233,17 +244,9 @@ class Gallery extends React.Component {
 					</div>
 
 				</div>
-			</div>
+			</Gallery.background>
 		)
 	}
 };
-
-Gallery.propTypes = {
-	photos: PropTypes.array,
-	initialIndex: PropTypes.number,
-	onClose: PropTypes.func,
-};
-
-Gallery = hover(Gallery);
 
 export { Gallery };
