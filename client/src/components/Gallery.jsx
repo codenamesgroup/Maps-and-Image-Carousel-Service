@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import styled from 'styled-components';
-import { FlexDiv, FlexDivCol } from './styledComponents';
+import { FlexDiv, FlexDivCol, Field, SubField } from './styledComponents';
 
 import { CloseButton } from './CloseButton.jsx';
 
 class Gallery extends React.Component {
 	static propTypes = {
 		photos: PropTypes.array,
+		business: PropTypes.object,
 		initialIndex: PropTypes.number,
 		onClose: PropTypes.func,
 	};
@@ -134,49 +135,37 @@ class Gallery extends React.Component {
 		text-align: center;
 	`;
 
+	static column = styled.div`
+		display: flex;
+		flex-direction: column;
+		padding: 16px;
+	`;
+
+	static avatar = styled.img`
+		width: 38px;
+		height: 38px;
+		border-radius: 4px;
+		background: lightgray;
+	`;
+
+	static titleContainer = styled.div`
+		display: flex;
+		flex-direction: column;
+		margin: auto 16px;
+	`;
+
+	static caption = styled.p`
+		padding: 8pt 0;
+		margin: 0;
+	`;
+
+	static date = styled.p`
+		margin: 0;
+		font-size: 10pt;
+		color: gray;
+	`;
+
 	render() {
-		let styles = {
-			sidebar: {
-				display: 'flex',
-				flexDirection: 'column',
-				padding: '16px',
-			},
-			businessInfo: {
-				display: 'flex',
-				flexDirection: 'row',
-			},
-			avatar: {
-				width: '38px',
-				height: '38px',
-				borderRadius: '4px',
-				background:'lightgray',
-			},
-			businessTitle: {
-				display: 'flex',
-				flexDirection: 'column',
-				margin: 'auto 16px',
-			},
-			field: {
-				padding: '0',
-				margin: '0',
-				fontSize: '12pt',
-			},
-			subField: {
-				padding: '0',
-				margin: '0',
-				fontSize: '8pt',
-				color: 'gray',
-			},
-			caption: {
-				padding: '8pt 0',
-				margin: '0',
-			},
-			date: {
-				margin: '0',
-				fontSize: '10pt',
-				color: 'gray',
-			}
-		};
 
 		const { photos, onClose } = this.props;
 		const { currentIndex } = this.state;
@@ -214,18 +203,20 @@ class Gallery extends React.Component {
 						</Gallery.imageContainer>
 
 						{/* extra info */}
-						<div style={styles.sidebar}>
-							<div style={styles.businessInfo}>
-								<div style={styles.avatar}/>
-								<div style={styles.businessTitle}>
-									<p style={styles.field}>Business Name</p>
-									<p style={styles.subField}>From the business owner</p>
-								</div>
-							</div>
+						<Gallery.column>
+							<FlexDiv>
+								<Gallery.avatar/>
+								<Gallery.titleContainer>
+									<Field>{this.props.business.name}</Field>
+									<SubField>From the business owner</SubField>
+								</Gallery.titleContainer>
+							</FlexDiv>
 
-							<p style={styles.caption}> This is a caption</p>
-							<p style={styles.date}> March 10, 2010</p>
-						</div>
+							<Gallery.column>
+								<Gallery.caption>{photos[currentIndex].caption || 'no caption'}</Gallery.caption>
+								<Gallery.date> March 10, 2010 </Gallery.date>
+							</Gallery.column>
+						</Gallery.column>
 
 					</Gallery.content>
 

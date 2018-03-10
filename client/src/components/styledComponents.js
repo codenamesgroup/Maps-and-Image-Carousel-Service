@@ -11,4 +11,15 @@ const FlexDivCol = FlexDiv.extend`
 	flex-direction: column;
 `;
 
-export { FlexDiv, FlexDivCol, };
+const Field = styled.p`
+	margin: 0;
+	padding: 0;
+	font-size: 12pt;
+`;
+
+const SubField = Field.extend`
+	font-size: 8pt;
+	color: gray;
+`;
+
+export { FlexDiv, FlexDivCol, Field, SubField };

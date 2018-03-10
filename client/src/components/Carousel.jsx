@@ -60,7 +60,8 @@ class Carousel extends React.Component {
 
 				{
 					this.state.galleryOpen
-					? <Gallery photos={this.props.photos} initialIndex={this.state.galleryStartPage} onClose={this.galleryClose}/>
+					? <Gallery photos={this.props.photos} business={this.props.business}
+							initialIndex={this.state.galleryStartPage} onClose={this.galleryClose}/>
 					: undefined
 				}
 			</FlexDiv>
