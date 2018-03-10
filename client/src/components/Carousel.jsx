@@ -6,6 +6,16 @@ import { CarouselImage } from './CarouselImage.jsx';
 import { Gallery } from './Gallery.jsx';
 
 class Carousel extends React.Component {
+	static propTypes = {
+		business: PropTypes.object,
+		photos: PropTypes.array,
+	};
+
+	static defaultProps = {
+		business: {},
+		photos: [],
+	};
+
 	constructor(props) {
 		super(props);
 
@@ -16,6 +26,7 @@ class Carousel extends React.Component {
 		};
 	};
 
+	/* called when a carousel image is clicked */
 	itemOnClick = (index) => {
 		this.setState({
 			galleryOpen: true,
@@ -23,12 +34,15 @@ class Carousel extends React.Component {
 		});
 	}
 
+	/* called when the gallery is closed */
 	galleryClose = () => {
 		this.setState({galleryOpen: false});
 	}
 
-	onMouseEnter = (i) => {
-		this.setState({ hoveredIndex: i});
+	/** called to enlarge a carousel image
+	 * @param {number} carouselImageIndex Carousel Image to enlarge */
+	enlarge = (carouselImageIndex) => {
+		this.setState({ hoveredIndex: carouselImageIndex});
 	}
 
 	render() {
@@ -45,27 +59,15 @@ class Carousel extends React.Component {
 
 		return (
 			<div style={styles.container}>
-				<CarouselImage image={this.props.photos && this.props.photos.length >= 1 ? this.props.photos[0] : {}}
-					business={this.props.business || {}}
-					onClick={this.itemOnClick.bind(null, 0)}
-					enlarged = {this.state.hoveredIndex === 0}
-					onMouseEnter={this.onMouseEnter.bind(this, 0)}
-					onMouseLeave={this.onMouseEnter.bind(this, 1)}
-				/>
-				<CarouselImage image={this.props.photos && this.props.photos.length >= 2 ? this.props.photos[1] : {}}
-					business={this.props.business || {}}
-					onClick={this.itemOnClick.bind(null, 1)}
-					enlarged = {this.state.hoveredIndex === 1}
-					onMouseEnter={this.onMouseEnter.bind(this, 1)}
-					onMouseLeave={this.onMouseEnter.bind(this, 1)}
-				/>
-				<CarouselImage image={this.props.photos && this.props.photos.length >= 3 ? this.props.photos[2] : {}}
-					business={this.props.business || {}}
-					onClick={this.itemOnClick.bind(null, 2)}
-					enlarged = {this.state.hoveredIndex === 2}
-					onMouseEnter={this.onMouseEnter.bind(this, 2)}
-					onMouseLeave={this.onMouseEnter.bind(this, 1)}
-				/>
+				{this.props.photos.slice(0, 3).map((photo, i) => {
+					return <CarouselImage key={i}
+						image={photo} business={this.props.business}
+						onClick={this.itemOnClick.bind(null, i)}
+						enlarged={this.state.hoveredIndex === i}
+						onMouseEnter={this.enlarge.bind(this, i)}
+						onMouseLeave={this.enlarge.bind(this, 1)}
+					/>
+				})}
 
 				{
 					this.state.galleryOpen
@@ -75,11 +77,6 @@ class Carousel extends React.Component {
 			</div>
 		)
 	}
-};
-
-Carousel.propTypes = {
-	business: PropTypes.object,
-	photos: PropTypes.array,
 };
 
 export { Carousel };
