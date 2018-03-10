@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { FlexDivCol } from './styledComponents';
+import styled from 'styled-components';
+import { FlexDiv, FlexDivCol } from './styledComponents';
 
 import { CloseButton } from './CloseButton.jsx';
 
@@ -57,98 +58,84 @@ class Gallery extends React.Component {
 		background: rgba(0, 0, 0, 0.4);
 	`;
 
+	static container = FlexDivCol.extend`
+		min-width: 960px;
+		max-width: 1300px;
+		width: 95%;
+		height: 100%;
+		padding-bottom: 32px;
+	`;
+
+	static closeButton = styled.span`
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-left: auto;
+		height: 32px;
+	`;
+
+	static content = styled.div`
+		display: grid;
+		grid-template-columns: 1fr 300px;
+		border-radius: 6px;
+		background: white;
+		width: 100%;
+		height: 100%;
+	`;
+
+	static imageContainer = styled.div`
+		position: relative;
+		background: black;
+		height: 100%;
+		width: 100%;
+	`;
+
+	static image = styled.img`
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+	`;
+
+	static buttonHolder = styled.div`
+		display: flex;
+		position: absolute;
+		width: 50%;
+		height: 100%;
+		align-items: center;
+		bottom: 0;
+		cursor: pointer;
+		user-select: none;
+	`;
+
+	static leftButtonContainer = Gallery.buttonHolder.extend`
+		left: 0;
+	`;
+
+	static rightButtonContainer = Gallery.buttonHolder.extend`
+		right: 0;
+		justify-content: flex-end;
+	`;
+
+	static paginationIcon = styled.div`
+		font-size: 60px;
+		color: white;
+		text-align: right;
+		margin: 16px;
+	`;
+
+	static imageFooter = FlexDiv.extend`
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		padding: 8px 0;
+		background: rgba(0, 0, 0, 0.7);
+		font-size: 12pt;
+		color: lightgray;
+		text-align: center;
+	`;
+
 	render() {
 		let styles = {
-			container: {
-				display: 'flex',
-				flexDirection: 'column',
-				minWidth: '960px',
-				maxWidth: '1300px',
-				width: '95%',
-				height: '100%',
-				paddingBottom: '32px',
-			},
-			content: {
-				display: 'grid',
-				gridTemplateColumns: '1fr 300px',
-
-				borderRadius: '6px',
-				background: 'white',
-				width: '100%',
-				height: '100%',
-			},
-			closeButton: {
-				display: 'flex',
-				justifyContent: 'center',
-				alignItems: 'center',
-				marginLeft: 'auto',
-				height: '32px',
-			},
-			imageContainer: {
-				position: 'relative',
-				alignItems: 'center',
-				background: 'black',
-				height: '100%',
-				width: '100%',
-			},
-			image: {
-				width: '100%',
-				height: '100%',
-				objectFit: 'contain',
-			},
-			leftButton: {
-				display: 'flex',
-				alignItems: 'center',
-
-				position: 'absolute',
-				left: '0',
-				bottom: '0',
-				width: '50%',
-				height: '100%',
-
-				fontSize: '60px',
-				color: 'white',
-				textAlign: 'left',
-				cursor: 'pointer',
-				userSelect: 'none',
-			},
-			rightButton: {
-				display: 'flex',
-				justifyContent: 'flex-end',
-				alignItems: 'center',
-
-				position: 'absolute',
-				right: '0',
-				bottom: '0',
-				width: '50%',
-				height: '100%',
-
-				fontSize: '60px',
-				color: 'white',
-				textAlign: 'right',
-				cursor: 'pointer',
-				userSelect: 'none',
-			},
-			paginationIcon: {
-				margin: '16px',
-			},
-			imageFooter: {
-				display: 'flex',
-				justifyContent: 'center',
-				alignItems: 'center',
-
-				position: 'absolute',
-				bottom: '0',
-				width: '100%',
-				padding: '8px 0',
-
-				background: 'rgba(0, 0, 0, 0.7)',
-				fontSize: '16px',
-				color: 'lightgray',
-				textAlign: 'center',
-			},
-
-
 			sidebar: {
 				display: 'flex',
 				flexDirection: 'column',
@@ -196,36 +183,35 @@ class Gallery extends React.Component {
 
 		return (
 			<Gallery.background>
+				<Gallery.container>
 
-				<div style={styles.container}>
-					<span style={styles.closeButton}>
+					<Gallery.closeButton>
 						<CloseButton onClose={onClose}/>
-					</span>
+					</Gallery.closeButton>
 
 					{/* Gallery Content */}
-					<div style={styles.content}>
+					<Gallery.content>
 
 						{/* Image Container */}
-						<div style={styles.imageContainer}>
+						<Gallery.imageContainer>
 
 							{/* Left Button */}
-							<div style={styles.leftButton} onClick={this.pageBack}>
-								<div style={styles.paginationIcon}> ❮ </div>
-							</div>
+							<Gallery.leftButtonContainer onClick={this.pageBack}>
+								<Gallery.paginationIcon> ❮ </Gallery.paginationIcon>
+							</Gallery.leftButtonContainer>
 
 							{/* Right Button */}
-							<div style={styles.rightButton} onClick={this.pageForward}>
-								<div style={styles.paginationIcon}> ❯ </div>
-							</div>
+							<Gallery.rightButtonContainer onClick={this.pageForward}>
+								<Gallery.paginationIcon> ❯ </Gallery.paginationIcon>
+							</Gallery.rightButtonContainer>
 
 							{/* Image Footer */}
-							<div style={styles.imageFooter}>
+							<Gallery.imageFooter>
 								{`${currentIndex + 1} of ${photos.length}`}
-							</div>
+							</Gallery.imageFooter>
 
-							<img style={styles.image}
-								src={`https://s3-media4.fl.yelpcdn.com/bphoto/${photos[currentIndex].id}/o.jpg`}/>
-						</div>
+							<Gallery.image src={`https://s3-media4.fl.yelpcdn.com/bphoto/${photos[currentIndex].id}/o.jpg`}/>
+						</Gallery.imageContainer>
 
 						{/* extra info */}
 						<div style={styles.sidebar}>
@@ -241,9 +227,9 @@ class Gallery extends React.Component {
 							<p style={styles.date}> March 10, 2010</p>
 						</div>
 
-					</div>
+					</Gallery.content>
 
-				</div>
+				</Gallery.container>
 			</Gallery.background>
 		)
 	}

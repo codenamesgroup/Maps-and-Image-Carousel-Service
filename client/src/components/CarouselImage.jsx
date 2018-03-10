@@ -20,6 +20,19 @@ class CarouselImage extends React.PureComponent {
 		enlarged: false,
 	};
 
+	/** culls the caption text to be length characters long
+	 * @param {string} caption The caption to cull
+	 * @param {number} length The length to cull to
+	 * @return the caption culled to the given length */
+	cullCaption = (caption, length) => {
+		caption = caption || '';
+		if (caption.length >= length) {
+			caption = caption.substr(length) + '...';
+		}
+
+		return caption;
+	}
+
 	static container = styled.div`
 		position: relative;
 		box-shadow: ${props => props.enlarged ? '0 0 32px 8px rgba(0, 0, 0, 0.2)' : ''};
@@ -64,19 +77,6 @@ class CarouselImage extends React.PureComponent {
 		font-size: 10pt;
 		padding: 0;
 	`;
-
-	/** culls the caption text to be length characters long
-	 * @param {string} caption The caption to cull
-	 * @param {number} length The length to cull to
-	 * @return the caption culled to the given length */
-	cullCaption = (caption, length) => {
-		caption = caption || '';
-		if (caption.length >= length) {
-			caption = caption.substr(length) + '...';
-		}
-
-		return caption;
-	}
 
 	render() {
 		let {id, caption} = this.props.image;
