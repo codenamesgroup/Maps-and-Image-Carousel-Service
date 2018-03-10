@@ -1,134 +1,114 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import reactCSS, { hover } from 'reactcss';
 
-class CarouselImage extends React.Component {
-	constructor(props) {
-		super(props);
+import styled from 'styled-components';
+import { FlexDivCol } from './styledComponents';
 
-		this.state = {
-			hover: props.enlarged || false,
-		};
+class CarouselImage extends React.PureComponent {
+	static propTypes = {
+		business: PropTypes.object,
+		image: PropTypes.object,
+		enlarged: PropTypes.bool,
+		onClick: PropTypes.func,
+		onMouseEnter: PropTypes.func,
+		onMouseLeave: PropTypes.func,
+	};
+
+	static defaultProps = {
+		business: {},
+		image: {},
+		enlarged: false,
+	};
+
+	static container = styled.div`
+		position: relative;
+		box-shadow: ${props => props.enlarged ? '0 0 32px 8px rgba(0, 0, 0, 0.2)' : ''};
+	`;
+
+	static image = styled.img`
+		background: black;
+		object-fit: cover;
+		width: ${props => props.enlarged ? '250px' : '220px'};
+		height: ${props => props.enlarged ? '250px' : '220px'};
+		padding: 0;
+		margin: 0;
+	`;
+
+	static label = styled.div`
+		display: ${props => props.show ? 'flex' : 'none'};
+		flex-direction: row;
+		position: absolute;
+		color: white;
+		background: rgba(0,0,0,0.5);
+		width: 250px;
+		left: 0;
+		bottom: 0;
+		margin: 0;
+		padding: 8px 0;
+	`;
+
+	static captionContainer = FlexDivCol.extend`
+		width: 80%;
+	`;
+
+	static profileIcon = styled.img`
+		background: lightgray;
+		border-radius: 6px;
+		width: 30px;
+		height: 30px;
+		margin: 0 8px;
+	`;
+
+	static captionText = styled.div`
+		text-align: center;
+		font-size: 10pt;
+		padding: 0;
+	`;
+
+	/** culls the caption text to be length characters long
+	 * @param {string} caption The caption to cull
+	 * @param {number} length The length to cull to
+	 * @return the caption culled to the given length */
+	cullCaption = (caption, length) => {
+		caption = caption || '';
+		if (caption.length >= length) {
+			caption = caption.substr(length) + '...';
+		}
+
+		return caption;
 	}
 
 	render() {
-		const normalStyles = {
-			container: {
-				position: 'relative',
-				textAlign: 'center',
-				width: '220px',
-				height: '220px',
-			},
-			image: {
-				background: 'black',
-				objectFit: 'cover',
-				width: '220px',
-				height: '220px',
-				padding: '0px',
-				margin: '0px',
-			},
-			label: {
-				display: 'none',
-			},
-		};
-
-		const hoverStyles = {
-			container: {
-				position: 'relative',
-				boxShadow: '0 0 32px 8px rgba(0, 0, 0, 0.2)',
-
-				textAlign: 'center',
-				width: '250px',
-				height: '250px',
-			},
-			image: {
-				background: 'black',
-				objectFit: 'cover',
-				width: '250px',
-				height: '250px',
-				padding: '0px',
-				margin: '0px',
-			},
-			label: {
-				display: 'flex',
-				flexDirection: 'row',
-				position: 'absolute',
-				color: 'white',
-				background: 'rgba(0,0,0,0.5)',
-				width: '250px',
-				left: '0',
-				bottom: '0',
-				margin: '0',
-				padding: '8px 0'
-			},
-		};
-
-		const staticStyles = {
-			profileIcon: {
-				margin: '0 8px',
-				width: '30px',
-				height: '30px',
-				borderRadius: '6px',
-				background: 'lightgray',
-			},
-			captionContainer: {
-				display: 'flex',
-				flexDirection: 'column',
-				justifyContent: 'center',
-				alignItems: 'center',
-				width: '80%',
-			},
-			text: {
-				textAlign: 'center',
-				textOverflow: 'ellipsis',
-				whiteSpace: 'nowrap',
-				overflow: 'hidden',
-				width: '100%',
-				margin: 'auto 0',
-				padding: '0',
-				fontSize: '10pt',
-			},
-		}
-
-		const styles = this.props.enlarged ? hoverStyles : normalStyles;
-
-		let captionText = this.props.image.caption || '';
-		if (captionText.length >= 30) {
-			captionText = captionText.substr(30) + '...'
-		}
+		let {id, caption} = this.props.image;
 
 		return (
-			<div style={styles.container}
+			<CarouselImage.container enlarged={this.props.enlarged}
 				onClick={this.props.onClick}
 				onMouseEnter={this.props.onMouseEnter}
-				onMouseLeave={this.props.onMouseLeave}
-			>
-				<img style={styles.image}
-					src={ this.props.image.id ? `https://s3-media4.fl.yelpcdn.com/bphoto/${this.props.image.id}/o.jpg` : undefined}
+				onMouseLeave={this.props.onMouseLeave}>
+
+				{/* Image */}
+				<CarouselImage.image enlarged={this.props.enlarged}
+					src={id ? `https://s3-media4.fl.yelpcdn.com/bphoto/${id}/o.jpg` : undefined}
 				/>
 
-				<div style={styles.label}>
-					<img style={staticStyles.profileIcon}/>
+				{/* Caption */}
+				<CarouselImage.label show={this.props.enlarged}>
+					<CarouselImage.profileIcon/>
 
-					<div style={staticStyles.captionContainer}>
-						{captionText.length > 0 ? <p style={staticStyles.text}>{captionText}</p> : undefined }
-						<p style={staticStyles.text}>by {this.props.business.name || 'Anonymous'}</p>
-					</div>
-				</div>
-			</div>
+					<CarouselImage.captionContainer>
+						{
+							caption.length > 0
+								? <CarouselImage.captionText>{this.cullCaption(caption)}</CarouselImage.captionText>
+								: undefined
+						}
+						<CarouselImage.captionText>by {this.props.business.name || 'Anonymous'}</CarouselImage.captionText>
+					</CarouselImage.captionContainer>
+				</CarouselImage.label>
+
+			</CarouselImage.container>
 		);
 	}
 }
-
-CarouselImage.propTypes = {
-	business: PropTypes.object,
-	image: PropTypes.object,
-	onClick: PropTypes.func,
-	enlarged: PropTypes.bool,
-	onMouseEnter: PropTypes.func,
-	onMouseLeave: PropTypes.func,
-};
-
-CarouselImage = hover(CarouselImage);
 
 export { CarouselImage };

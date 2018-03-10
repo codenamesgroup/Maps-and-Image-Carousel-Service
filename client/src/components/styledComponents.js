@@ -7,4 +7,8 @@ const FlexDiv = styled.div`
 	align-items: center;
 `;
 
-export { FlexDiv };
+const FlexDivCol = FlexDiv.extend`
+	flex-direction: column;
+`;
+
+export { FlexDiv, FlexDivCol, };
