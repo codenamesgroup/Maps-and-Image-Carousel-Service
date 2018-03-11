@@ -1,31 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<BusinessInfo/> should render with empty business object 1`] = `
-<div
-  style={
-    Object {
-      "background": "white",
-      "border": "1px solid #cccccc",
-      "fontSize": "10px",
-      "heigth": "300px",
-      "padding": "4px",
-      "width": "300px",
-    }
-  }
->
+<styled.div>
   <Map
     latitude={0}
     longitude={0}
   />
-  <div
-    style={
-      Object {
-        "display": "grid",
-        "gridTemplateColumns": "32px 1fr",
-        "padding": "8px",
-      }
-    }
-  >
+  <styled.div>
     <FaMapMarker
       style={
         Object {
@@ -37,30 +18,12 @@ exports[`<BusinessInfo/> should render with empty business object 1`] = `
       }
     />
     <div>
-      <p
-        style={
-          Object {
-            "fontSize": "10pt",
-            "fontWeight": "bold",
-            "margin": "0",
-            "padding": "0",
-          }
-        }
-      >
+      <styled.p>
         undefined
-      </p>
-      <p
-        style={
-          Object {
-            "fontSize": "10pt",
-            "fontWeight": "bold",
-            "margin": "0",
-            "padding": "0",
-          }
-        }
-      >
+      </styled.p>
+      <styled.p>
         undefined, undefined undefined
-      </p>
+      </styled.p>
     </div>
     <FaMapSigns
       style={
@@ -72,26 +35,9 @@ exports[`<BusinessInfo/> should render with empty business object 1`] = `
         }
       }
     />
-    <p
-      style={
-        Object {
-          "fontSize": "10pt",
-          "margin": "auto 0px",
-          "padding": "0",
-        }
-      }
-    >
-      <a
-        style={
-          Object {
-            "color": "blue",
-            "cursor": "pointer",
-          }
-        }
-      >
-        Get Directions
-      </a>
-    </p>
+    <styled.p>
+      Get Directions
+    </styled.p>
     <FaPhone
       style={
         Object {
@@ -102,18 +48,9 @@ exports[`<BusinessInfo/> should render with empty business object 1`] = `
         }
       }
     />
-    <p
-      style={
-        Object {
-          "fontSize": "10pt",
-          "margin": "auto 0px",
-          "padding": "0",
-        }
-      }
-    >
+    <styled.p>
       (545) 523-7964
-    </p>
-     
+    </styled.p>
     <FaExternalLink
       style={
         Object {
@@ -124,26 +61,9 @@ exports[`<BusinessInfo/> should render with empty business object 1`] = `
         }
       }
     />
-    <p
-      style={
-        Object {
-          "fontSize": "10pt",
-          "margin": "auto 0px",
-          "padding": "0",
-        }
-      }
-    >
-      <a
-        style={
-          Object {
-            "color": "blue",
-            "cursor": "pointer",
-          }
-        }
-      >
-        undefined.com
-      </a>
-    </p>
+    <styled.p>
+      undefined.com
+    </styled.p>
     <FaMobile
       style={
         Object {
@@ -154,26 +74,9 @@ exports[`<BusinessInfo/> should render with empty business object 1`] = `
         }
       }
     />
-    <p
-      style={
-        Object {
-          "fontSize": "10pt",
-          "margin": "auto 0px",
-          "padding": "0",
-        }
-      }
-    >
-      <a
-        style={
-          Object {
-            "color": "blue",
-            "cursor": "pointer",
-          }
-        }
-      >
-        Send to your phone
-      </a>
-    </p>
-  </div>
-</div>
+    <styled.p>
+      Send to your phone
+    </styled.p>
+  </styled.div>
+</styled.div>
 `;

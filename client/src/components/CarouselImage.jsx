@@ -16,7 +16,10 @@ class CarouselImage extends React.PureComponent {
 
 	static defaultProps = {
 		business: {},
-		image: {},
+		image: {
+			id: '',
+			caption: '',
+		},
 		enlarged: false,
 	};
 

@@ -16,6 +16,7 @@ class Gallery extends React.Component {
 
 	static defaultProps = {
 		photos: [],
+		business: {},
 		initialIndex: 0,
 	};
 
@@ -207,7 +208,7 @@ class Gallery extends React.Component {
 						<Gallery.column>
 							<FlexDiv>
 								<Gallery.titleContainer>
-									<Field>{this.props.business.name}</Field>
+									<Field>{this.props.business.name || 'business name'}</Field>
 									<SubField>From the business owner</SubField>
 								</Gallery.titleContainer>
 							</FlexDiv>
