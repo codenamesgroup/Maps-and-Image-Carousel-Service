@@ -1,81 +1,86 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import styled from 'styled-components';
 import * as FontAwesome from 'react-icons/lib/fa';
 
 import { Map } from './Map.jsx';
 
-const BusinessInfo = (props) => {
-	let styles = {
-		container: {
-			margin: '0',
-			padding: '4px',
-			background: 'white',
-			fontSize: '10px',
+class BusinessInfo extends React.PureComponent {
+	static propTypes = {
+		business: PropTypes.object,
+	};
 
-			heigth: '300px',
+	static defaultProps = {
+		business: {},
+	};
 
-			border: '1px solid #cccccc'
-		},
-		infoContainer: {
-			display: 'grid',
-			gridTemplateColumns: '32px 1fr',
-			padding: '8px',
-		},
-		icon: {
+	static container = styled.div`
+		border: 1px solid #cccccc;
+		margin: 0;
+		padding: 4px;
+	`;
+
+	static infoContainer = styled.div`
+		display: grid;
+		grid-template-columns: 32px 1fr;
+		padding: 8px;
+	`;
+
+	static textItem = styled.p`
+		fontSize: 10pt;
+		margin: auto 0;
+		padding: 0;
+	`;
+
+	static link = BusinessInfo.textItem.extend`
+		color: blue;
+		cursor: pointer;
+	`;
+
+	static address = BusinessInfo.textItem.extend`
+		font-weight: bold;
+	`;
+
+	render() {
+		const iconStyle = {
 			width:'18px',
 			height:'18px',
 			margin: '4px auto',
 			color: 'darkgray',
-		},
-		text: {
-			margin: 'auto 0px',
-			padding: '0',
-			fontSize: '10pt',
-		},
-		link: {
-			color: 'blue',
-			cursor: 'pointer',
-		},
-		address: {
-			margin: '0',
-			padding: '0',
-			fontSize: '10pt',
-			fontWeight: 'bold',
-		},
-	};
+		}
 
-	return (
-		<div style={styles.container}>
-			<Map longitude={props.business.longitude || 0.0} latitude={props.business.latitude || 0.0}/>
+		return (
+			<BusinessInfo.container>
+				<Map longitude={this.props.business.longitude || 0.0} latitude={this.props.business.latitude || 0.0}/>
 
-			<div style={styles.infoContainer}>
+				<BusinessInfo.infoContainer>
 
-				<FontAwesome.FaMapMarker style={styles.icon}/>
-				<div>
-					<p style={styles.address}>{`${props.business.address}`}</p>
-					<p style={styles.address}>{`${props.business.city}, ${props.business.state} ${props.business.postal_code}`}</p>
-				</div>
+					<FontAwesome.FaMapMarker style={iconStyle}/>
+					<div>
+						<BusinessInfo.address>{`${this.props.business.address}`}</BusinessInfo.address>
+						<BusinessInfo.address>{
+							`${this.props.business.city}, ${this.props.business.state} ${this.props.business.postal_code}`
+						}</BusinessInfo.address>
+					</div>
 
-				<FontAwesome.FaMapSigns style={styles.icon}/>
-				<p style={styles.text}><a style={styles.link}>Get Directions</a></p>
+					<FontAwesome.FaMapSigns style={iconStyle}/>
+					<BusinessInfo.link>Get Directions</BusinessInfo.link>
 
-				<FontAwesome.FaPhone style={styles.icon}/>
-				<p style={styles.text}>(545) 523-7964</p> {/* @TODO: THEY DONT HAVE PHONE NUMBERS IN THE DATABASE */}
+					 {/* no phone numbers in the database */}
+					<FontAwesome.FaPhone style={iconStyle}/>
+					<BusinessInfo.textItem>(545) 523-7964</BusinessInfo.textItem>
 
-				<FontAwesome.FaExternalLink style={styles.icon}/>
-				<p style={styles.text}><a style={styles.link}>{`${props.business.name}.com`}</a></p>
+					<FontAwesome.FaExternalLink style={iconStyle}/>
+					<BusinessInfo.link>{`${this.props.business.name}.com`}</BusinessInfo.link>
 
-				<FontAwesome.FaMobile style={styles.icon}/>
-				<p style={styles.text}><a style={styles.link}>Send to your phone</a></p>
+					<FontAwesome.FaMobile style={iconStyle}/>
+					<BusinessInfo.link>Send to your phone</BusinessInfo.link>
 
-			</div>
-		</div>
-	);
-};
-
-BusinessInfo.propTypes = {
-	business: PropTypes.object,
+				</BusinessInfo.infoContainer>
+			</BusinessInfo.container>
+		);
+	}
 };
 
 export { BusinessInfo };

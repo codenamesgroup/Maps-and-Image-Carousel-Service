@@ -1,14 +1,29 @@
 import React from 'react';
-import reactCSS, { hover } from 'reactcss';
 import PropTypes from 'prop-types';
+
+import styled from 'styled-components';
+import { FlexDiv, FlexDivCol, Field, SubField } from './styledComponents';
 
 import { CloseButton } from './CloseButton.jsx';
 
 class Gallery extends React.Component {
+	static propTypes = {
+		photos: PropTypes.array,
+		business: PropTypes.object,
+		initialIndex: PropTypes.number,
+		onClose: PropTypes.func,
+	};
+
+	static defaultProps = {
+		photos: [],
+		business: {},
+		initialIndex: 0,
+	};
+
 	constructor(props) {
 		super(props);
 		this.state = {
-			currentIndex: props.initialIndex || 0,
+			currentIndex: props.initialIndex,
 		};
 	}
 
@@ -34,216 +49,182 @@ class Gallery extends React.Component {
 		});
 	}
 
+	static background = FlexDivCol.extend`
+		position: fixed;
+		align-items: center;
+		z-index: 1;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background: rgba(0, 0, 0, 0.4);
+	`;
+
+	static container = FlexDivCol.extend`
+		min-width: 960px;
+		max-width: 1300px;
+		width: 95%;
+		height: 100%;
+		padding-bottom: 32px;
+	`;
+
+	static closeButton = styled.span`
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-left: auto;
+		height: 32px;
+	`;
+
+	static content = styled.div`
+		display: grid;
+		grid-template-columns: 1fr 300px;
+		border-radius: 6px;
+		background: white;
+		width: 100%;
+		height: 100%;
+	`;
+
+	static imageContainer = styled.div`
+		position: relative;
+		background: black;
+		height: 100%;
+		width: 100%;
+	`;
+
+	static image = styled.img`
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+	`;
+
+	static buttonHolder = styled.div`
+		display: flex;
+		position: absolute;
+		width: 50%;
+		height: 100%;
+		align-items: center;
+		bottom: 0;
+		cursor: pointer;
+		user-select: none;
+	`;
+
+	static leftButtonContainer = Gallery.buttonHolder.extend`
+		left: 0;
+	`;
+
+	static rightButtonContainer = Gallery.buttonHolder.extend`
+		right: 0;
+		justify-content: flex-end;
+	`;
+
+	static paginationIcon = styled.div`
+		font-size: 60px;
+		color: white;
+		text-align: right;
+		margin: 16px;
+	`;
+
+	static imageFooter = FlexDiv.extend`
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		padding: 8px 0;
+		background: rgba(0, 0, 0, 0.7);
+		font-size: 12pt;
+		color: lightgray;
+		text-align: center;
+	`;
+
+	static column = styled.div`
+		display: flex;
+		flex-direction: column;
+		padding: 16px;
+	`;
+
+	static avatar = styled.img`
+		display: none;
+		width: 38px;
+		height: 38px;
+		border-radius: 4px;
+		background: lightgray;
+	`;
+
+	static titleContainer = styled.div`
+		display: flex;
+		flex-direction: column;
+		margin: auto 16px;
+	`;
+
+	static caption = styled.p`
+		padding: 8pt 0;
+		margin: 0;
+	`;
+
+	static date = styled.p`
+		margin: 0;
+		font-size: 10pt;
+		color: gray;
+	`;
+
 	render() {
-		let styles = {
-			background: {
-				position: 'fixed',
-				display: 'flex',
-				flexDirection: 'column',
-				alignItems: 'center',
-				zIndex: '1',
-				width: '100%',
-				height: '100%',
-				left: '0',
-				top: '0',
-				background: 'rgba(0, 0, 0, 0.4)',
-			},
-			container: {
-				display: 'flex',
-				flexDirection: 'column',
-				minWidth: '960px',
-				maxWidth: '1300px',
-				width: '95%',
-				height: '100%',
-				paddingBottom: '32px',
-			},
-			content: {
-				display: 'grid',
-				gridTemplateColumns: '1fr 300px',
-
-				borderRadius: '6px',
-				background: 'white',
-				width: '100%',
-				height: '100%',
-			},
-			closeButton: {
-				display: 'flex',
-				justifyContent: 'center',
-				alignItems: 'center',
-				marginLeft: 'auto',
-				height: '32px',
-			},
-			imageContainer: {
-				position: 'relative',
-				alignItems: 'center',
-				background: 'black',
-				height: '100%',
-				width: '100%',
-			},
-			image: {
-				width: '100%',
-				height: '100%',
-				objectFit: 'contain',
-			},
-			leftButton: {
-				display: 'flex',
-				alignItems: 'center',
-
-				position: 'absolute',
-				left: '0',
-				bottom: '0',
-				width: '50%',
-				height: '100%',
-
-				fontSize: '60px',
-				color: 'white',
-				textAlign: 'left',
-				cursor: 'pointer',
-				userSelect: 'none',
-			},
-			rightButton: {
-				display: 'flex',
-				justifyContent: 'flex-end',
-				alignItems: 'center',
-
-				position: 'absolute',
-				right: '0',
-				bottom: '0',
-				width: '50%',
-				height: '100%',
-
-				fontSize: '60px',
-				color: 'white',
-				textAlign: 'right',
-				cursor: 'pointer',
-				userSelect: 'none',
-			},
-			paginationIcon: {
-				margin: '16px',
-			},
-			imageFooter: {
-				display: 'flex',
-				justifyContent: 'center',
-				alignItems: 'center',
-
-				position: 'absolute',
-				bottom: '0',
-				width: '100%',
-				padding: '8px 0',
-
-				background: 'rgba(0, 0, 0, 0.7)',
-				fontSize: '16px',
-				color: 'lightgray',
-				textAlign: 'center',
-			},
-
-
-			sidebar: {
-				display: 'flex',
-				flexDirection: 'column',
-				padding: '16px',
-			},
-			businessInfo: {
-				display: 'flex',
-				flexDirection: 'row',
-			},
-			avatar: {
-				width: '38px',
-				height: '38px',
-				borderRadius: '4px',
-				background:'lightgray',
-			},
-			businessTitle: {
-				display: 'flex',
-				flexDirection: 'column',
-				margin: 'auto 16px',
-			},
-			field: {
-				padding: '0',
-				margin: '0',
-				fontSize: '12pt',
-			},
-			subField: {
-				padding: '0',
-				margin: '0',
-				fontSize: '8pt',
-				color: 'gray',
-			},
-			caption: {
-				padding: '8pt 0',
-				margin: '0',
-			},
-			date: {
-				margin: '0',
-				fontSize: '10pt',
-				color: 'gray',
-			}
-		};
 
 		const { photos, onClose } = this.props;
 		const { currentIndex } = this.state;
 
 		return (
-			<div style={styles.background}>
+			<Gallery.background>
+				<Gallery.container>
 
-				<div style={styles.container}>
-					<span style={styles.closeButton}>
+					<Gallery.closeButton>
 						<CloseButton onClose={onClose}/>
-					</span>
+					</Gallery.closeButton>
 
 					{/* Gallery Content */}
-					<div style={styles.content}>
+					<Gallery.content>
 
 						{/* Image Container */}
-						<div style={styles.imageContainer}>
+						<Gallery.imageContainer>
 
 							{/* Left Button */}
-							<div style={styles.leftButton} onClick={this.pageBack}>
-								<div style={styles.paginationIcon}> ❮ </div>
-							</div>
+							<Gallery.leftButtonContainer onClick={this.pageBack}>
+								<Gallery.paginationIcon> ❮ </Gallery.paginationIcon>
+							</Gallery.leftButtonContainer>
 
 							{/* Right Button */}
-							<div style={styles.rightButton} onClick={this.pageForward}>
-								<div style={styles.paginationIcon}> ❯ </div>
-							</div>
+							<Gallery.rightButtonContainer onClick={this.pageForward}>
+								<Gallery.paginationIcon> ❯ </Gallery.paginationIcon>
+							</Gallery.rightButtonContainer>
 
 							{/* Image Footer */}
-							<div style={styles.imageFooter}>
+							<Gallery.imageFooter>
 								{`${currentIndex + 1} of ${photos.length}`}
-							</div>
+							</Gallery.imageFooter>
 
-							<img style={styles.image}
-								src={`https://s3-media4.fl.yelpcdn.com/bphoto/${photos[currentIndex].id}/o.jpg`}/>
-						</div>
+							<Gallery.image src={`https://s3-media4.fl.yelpcdn.com/bphoto/${photos[currentIndex].id}/o.jpg`}/>
+						</Gallery.imageContainer>
 
 						{/* extra info */}
-						<div style={styles.sidebar}>
-							<div style={styles.businessInfo}>
-								<div style={styles.avatar}/>
-								<div style={styles.businessTitle}>
-									<p style={styles.field}>Business Name</p>
-									<p style={styles.subField}>From the business owner</p>
-								</div>
-							</div>
+						<Gallery.column>
+							<FlexDiv>
+								<Gallery.titleContainer>
+									<Field>{this.props.business.name || 'business name'}</Field>
+									<SubField>From the business owner</SubField>
+								</Gallery.titleContainer>
+							</FlexDiv>
 
-							<p style={styles.caption}> This is a caption</p>
-							<p style={styles.date}> March 10, 2010</p>
-						</div>
+							<Gallery.column>
+								<Gallery.caption>{photos[currentIndex].caption || 'no caption'}</Gallery.caption>
+								<Gallery.date> March 10, 2010 </Gallery.date>
+							</Gallery.column>
+						</Gallery.column>
 
-					</div>
+					</Gallery.content>
 
-				</div>
-			</div>
+				</Gallery.container>
+			</Gallery.background>
 		)
 	}
 };
-
-Gallery.propTypes = {
-	photos: PropTypes.array,
-	initialIndex: PropTypes.number,
-	onClose: PropTypes.func,
-};
-
-Gallery = hover(Gallery);
 
 export { Gallery };

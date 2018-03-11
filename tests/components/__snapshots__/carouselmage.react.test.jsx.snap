@@ -1,12 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<CarouselImage/> should render 1`] = `
-<span
-  onMouseOut={[Function]}
-  onMouseOver={[Function]}
+<styled.div
+  enlarged={false}
 >
-  <CarouselImage
-    hover={false}
+  <styled.img
+    enlarged={false}
   />
-</span>
+  <styled.div
+    show={false}
+  >
+    <styled.img />
+    <styled.div>
+      <styled.div>
+        by 
+        Anonymous
+      </styled.div>
+    </styled.div>
+  </styled.div>
+</styled.div>
 `;
